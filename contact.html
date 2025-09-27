@@ -2,6 +2,153 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T.B.T 볼링 동아리 - 문의하기</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body></body>
+
+  <body>
+    <header>
+      <div class="container header-content">
+        <h1 class="header-title">🎳 T.B.T 볼링 동아리</h1>
+      </div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <ul>
+          <li class="nav-item">
+            <a href="./index.html" class="nav-link" data-page="home">홈</a>
+          </li>
+          <li class="nav-item">
+            <a href="./gallary.html" class="nav-link" data-page="gallery"
+              >갤러리</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="./article.html" class="nav-link" data-page="article"
+              >상세 리뷰</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="./contact.html" class="nav-link" data-page="contact"
+              >문의</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container content-card">
+        <section id="contact">
+          <h2 class="section-title">📧 가입 및 활동 문의</h2>
+          <p class="section-description">
+            사이트 이용 중 궁금한 점이나 제휴 문의 사항이 있으시면 아래 양식을
+            작성해 주세요.
+          </p>
+          <form id="contact-form" class="contact-form-layout" novalidate>
+            <!-- 1. 이름 필드 (required, placeholder) -->
+            <div class="form-group">
+              <label class="form-label" for="name">성함</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="성함을 입력하세요 (필수)"
+                class="input-style"
+              />
+            </div>
+
+            <!-- 2. 이메일 필드 (type, required, pattern, aria-describedby) -->
+            <div class="form-group">
+              <label class="form-label" for="email">이메일 주소</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="example@domain.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                aria-describedby="email-hint"
+                class="input-style"
+              />
+              <p id="email-hint" class="input-hint">
+                올바른 이메일 형식(예: user@example.com)을 입력해야 합니다.
+              </p>
+            </div>
+
+            <!-- 3. 연락 목적 필드 (required, minlength) -->
+            <div class="form-group">
+              <label class="form-label" for="subject">연락 목적</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                minlength="5"
+                placeholder="최소 5자 이상 입력하세요 (필수)"
+                class="input-style"
+              />
+            </div>
+
+            <!-- 4. 메시지 필드 (required, minlength) -->
+            <div class="form-group">
+              <label class="form-label" for="message">메시지 내용</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                minlength="10"
+                placeholder="자세한 문의 내용을 10자 이상 입력하세요 (필수)"
+                class="input-style"
+              ></textarea>
+            </div>
+
+            <!-- 5. 제출 및 리셋 버튼 -->
+            <div class="button-group">
+              <button class="submit-btn" type="submit">제출</button>
+              <button class="reset-btn" type="reset">초기화</button>
+            </div>
+
+            <div id="form-message"></div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <p>&copy; 2024 웹프로그래밍 과제 | T.B.T. 볼링 동아리</p>
+        <p class="mt-1">
+          정적 멀티페이지 방식 | 순수 CSS로 스타일링되었습니다.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const contactForm = document.getElementById("contact-form");
+        const formMessage = document.getElementById("form-message");
+
+        if (contactForm && formMessage) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            formMessage.textContent =
+              "✅ 문의가 성공적으로 접수되었습니다. (실제 데이터 전송은 없음)";
+            formMessage.className = "form-message-box active success"; // 스타일 변경
+
+            contactForm.reset();
+
+            setTimeout(() => {
+              formMessage.classList.remove("active");
+            }, 5000);
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
