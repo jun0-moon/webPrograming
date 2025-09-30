@@ -37,15 +37,334 @@
     </nav>
 
     <main>
-      <div class="container content-card"></div>
+      <div class="container">
+        <div class="article-layout">
+          <!-- A. 사이드바 (Aside) -->
+          <aside id="article-sidebar">
+            <h3 class="section-title-sidebar">목차 (Contents)</h3>
+
+            <div class="sidebar-content">
+              <div class="sidebar-group">
+                <div class="sidebar-group-header">규칙 (Basic Rules)</div>
+                <ul class="sub-selection-list">
+                  <li>
+                    <a
+                      href="#check"
+                      class="selection-item"
+                      onclick="showArticle('check', this); return false"
+                      >체크 및 체크메이트</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#stalemate"
+                      class="selection-item"
+                      onclick="showArticle('stalemate', this); return false"
+                      >스테일메이트</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#castling"
+                      class="selection-item"
+                      onclick="showArticle('castling', this); return false"
+                      >캐슬링 (Castling)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#en-passant"
+                      class="selection-item"
+                      onclick="showArticle('en-passant', this); return false"
+                      >앙파상 (En Passant)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#promotion"
+                      class="selection-item"
+                      onclick="showArticle('promotion', this); return false"
+                      >프로모션 (Promotion)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="sidebar-group">
+                <div class="sidebar-group-header">전략 (Strategy)</div>
+                <ul class="sub-selection-list">
+                  <li>
+                    <a
+                      href="#piece-value"
+                      class="selection-item"
+                      onclick="showArticle('piece-value', this); return false"
+                      >말의 상대적 가치</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#sacrifice"
+                      class="selection-item"
+                      onclick="showArticle('sacrifice', this); return false"
+                      >희생 (Sacrifice)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#underpromotion"
+                      class="selection-item"
+                      onclick="showArticle('underpromotion', this); return false"
+                      >언더프로모션</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#historical-game"
+                      class="selection-item"
+                      onclick="showArticle('historical-game', this); return false"
+                      >역사적 명국</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+
+          <!-- B. 본문 내용 (Article Body) -->
+          <div class="article-body-area">
+            <h2 class="section-title">체스의 심층 규칙 및 고급 전략</h2>
+
+            <div class="content-card" id="check">
+              <h3 class="card-title">1. 체크와 체크메이트</h3>
+              <p class="long-text">
+                체스 게임의 궁극적인 목표는 상대방의 킹을 잡을 수 있는 상태, 즉
+                <strong>체크(Check)</strong> 상태로 만들고 상대가 그 체크를 피할
+                수 없게 만드는 <strong>체크메이트(Checkmate)</strong>를 달성하는
+                것입니다. 체크를 당했을 때 플레이어는 반드시 킹을 이동시키거나,
+                체크를 가하는 말을 막거나, 해당 말을 잡아서 체크 상태를 벗어나야
+                합니다. 만약 세 가지 방법 모두 불가능하다면, 즉시 패배하게
+                됩니다.
+              </p>
+            </div>
+
+            <div class="content-card hidden" id="stalemate">
+              <h3 class="card-title">2. 스테일메이트 (Stalemate)</h3>
+              <p class="long-text">
+                스테일메이트는 게임이 무승부로 끝나는 특별한 상황입니다. 자신의
+                킹이 체크 상태는 아니지만, 합법적으로 둘 수 있는 수가 전혀
+                남아있지 않을 때 발생합니다. 이는 초보자들이 간과하기 쉬운
+                규칙이며, 불리한 상황에서 무승부를 이끌어내기 위한 고급 전략이
+                되기도 합니다.
+              </p>
+            </div>
+
+            <div class="content-card hidden" id="castling">
+              <h3 class="card-title">3. 캐슬링 (Castling)</h3>
+              <p class="long-text">
+                캐슬링은 체스에서 유일하게 두 기물(킹과 룩)이 동시에 움직이는
+                특별한 수입니다. 킹을 안전하게 지키고 룩을 중앙으로 활성화하기
+                위해 사용됩니다. 캐슬링은 킹이 움직인 적이 없고, 룩이 움직인
+                적이 없으며, 킹과 룩 사이에 아무 기물도 없어야 하고, 킹이
+                지나가는 경로가 상대방에게 공격당해서는 안 됩니다.
+              </p>
+
+              <!-- 인용 (Blockquote) 요구사항 충족 -->
+              <h4 class="sub-title">체스 명언 인용</h4>
+              <blockquote>
+                "The beauty of a move lies not in its form but in the thought
+                behind it."
+                <footer class="blockquote-footer">
+                  — Aaron Nimzowitsch, 덴마크-러시아의 그랜드마스터
+                </footer>
+              </blockquote>
+            </div>
+
+            <div class="content-card hidden" id="en-passant">
+              <h3 class="card-title">4. 앙파상 (En Passant) 및 프로모션</h3>
+              <p class="long-text" id="en-passant-anchor">
+                앙파상은 프랑스어로 '지나가는 중에'라는 뜻으로, 폰이 두 칸
+                전진했을 때 상대 폰이 그 폰을 즉시 대각선으로 잡을 수 있는
+                특별한 규칙입니다. 이는 상대 폰의 빠른 전진을 응징하기 위한
+                규칙이며, 앙파상 기회는 <strong>딱 한 수</strong>만 주어집니다.
+              </p>
+            </div>
+            <div class="content-card hidden" id="promotion">
+              <h3 class="card-title">5. 프로모션 (Promotion)</h3>
+              <p class="long-text">
+                프로모션은 폰이 상대방 진영의 맨 끝 줄에 도달했을 때 퀸, 룩,
+                비숍, 나이트 중 하나로 승진하는 규칙입니다. 보통 가장 강력한
+                퀸으로 승진하며, 이를
+                <strong>언더프로모션(Underpromotion)</strong> 전략과 연결하여
+                생각할 수 있습니다.
+              </p>
+            </div>
+
+            <div class="content-card hidden" id="piece-value">
+              <h3 class="card-title">6. 전략: 말의 상대적 가치</h3>
+              <!-- 표 (Table) 요구사항 충족 -->
+              <h4 class="sub-title">말의 상대적 가치 비교표</h4>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>기물</th>
+                    <th>상대적 가치 (점수)</th>
+                    <th>용도</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>폰 (Pawn)</td>
+                    <td>1점</td>
+                    <td>공간 확보, 프로모션 잠재력</td>
+                  </tr>
+                  <tr>
+                    <td>나이트 (Knight)</td>
+                    <td>3점</td>
+                    <td>폐쇄된 포지션에서 강력함, 점프 가능</td>
+                  </tr>
+                  <tr>
+                    <td>비숍 (Bishop)</td>
+                    <td>3점</td>
+                    <td>장거리 대각선 공격, 열린 포지션에서 강력함</td>
+                  </tr>
+                  <tr>
+                    <td>룩 (Rook)</td>
+                    <td>5점</td>
+                    <td>개방된 파일(세로) 또는 랭크(가로) 장악</td>
+                  </tr>
+                  <tr>
+                    <td>퀸 (Queen)</td>
+                    <td>9점</td>
+                    <td>최강의 공격력, 기동성 및 다재다능함</td>
+                  </tr>
+                  <tr>
+                    <td>킹 (King)</td>
+                    <td>&infin; (무한대)</td>
+                    <td>존재 가치, 게임의 승패 결정</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="content-card hidden" id="sacrifice">
+              <h3 class="card-title">7. 전략: 희생 (Sacrifice)</h3>
+              <p class="long-text">
+                희생(Sacrifice)은 체스에서 상대방에게 의도적으로 기물을 내어주는
+                행위입니다. 이는 단순한 실수처럼 보일 수 있지만, 더 큰 목표(예:
+                체크메이트 공격 경로 확보, 강력한 포지셔널 우위, 상대방의 수비
+                혼란)를 달성하기 위해 사용되는 고급 전략입니다.
+              </p>
+
+              <!-- Figure (그림/다이어그램) 요구사항 충족 -->
+              <figure class="chess-figure">
+                <!-- 이미지는 SVG 이모지 또는 플레이스홀더 사용 -->
+                <div class="placeholder-diagram">♟️ ♕ ♔</div>
+                <figcaption class="figure-caption">
+                  역사적인 포지션 다이어그램: 퀸 희생을 통한 체크메이트 기회.
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="content-card hidden" id="underpromotion">
+              <h3 class="card-title">8. 전략: 언더프로모션 (Underpromotion)</h3>
+              <p class="long-text">
+                폰이 승진할 때 퀸 대신 룩, 비숍, 나이트로 승진하는 것을
+                언더프로모션이라고 합니다. 퀸이 가장 강력하지만, 나이트로
+                언더프로모션하는 경우처럼 나이트의 독특한 움직임(특히 포크)이
+                필요한 상황에서 전략적으로 사용됩니다.
+              </p>
+            </div>
+
+            <div class="content-card hidden" id="historical-game">
+              <h3 class="card-title">9. 역사적 명국 (Historical Game)</h3>
+              <p class="long-text">
+                체스의 역사는 수많은 명국으로 채워져 있습니다. "불멸의
+                게임(Immortal Game)"이나 "오페라 게임(Opera Game)"과 같은 경기는
+                단순한 경기를 넘어 예술 작품으로 평가받습니다. 이 경기들을
+                분석하는 것은 전략적 사고를 기르는 데 필수적입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer>
       <div class="container">
-        <p class="footer-text">
-          © 2025 체스의 세계 | 웹 프로그래밍 과제용 정적 사이트
-        </p>
+        <p>&copy; 2025 체스 소개 웹사이트. All Rights Reserved.</p>
       </div>
     </footer>
+
+    <script>
+      /**
+       * article.html 페이지의 동적 사이드바 및 콘텐츠 전환을 관리하는 JavaScript.
+       */
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. 초기 상태 설정: 첫 번째 콘텐츠와 링크를 활성화합니다.
+        const firstContentId = "check";
+        const firstLink = document.querySelector(
+          `.sub-selection-list a[href="#${firstContentId}"]`
+        );
+
+        // 2. 초기화 함수 실행: 첫 번째 항목을 클릭한 것처럼 처리하여 활성화
+        if (firstLink) {
+          showArticle(firstContentId, firstLink);
+        }
+
+        // 3. 사이드바 그룹 헤더 이벤트 리스너 설정
+        const groupHeaders = document.querySelectorAll(".sidebar-group-header");
+        groupHeaders.forEach((header) => {
+          header.addEventListener("click", () => {
+            const subList = header.nextElementSibling;
+
+            // 다른 열린 메뉴 닫기 (아코디언 기능)
+            groupHeaders.forEach((otherHeader) => {
+              const otherList = otherHeader.nextElementSibling;
+              if (
+                otherList !== subList &&
+                otherList.classList.contains("expanded")
+              ) {
+                otherList.classList.remove("expanded");
+              }
+            });
+
+            // 현재 메뉴 토글 (열기/닫기)
+            subList.classList.toggle("expanded");
+          });
+        });
+      });
+
+      /**
+       * 특정 아티클 콘텐츠를 표시하고, 클릭된 링크를 활성화합니다.
+       * @param {string} contentId 표시할 콘텐츠의 ID (예: 'check')
+       * @param {HTMLElement} clickedLink 클릭된 앵커(a) 요소
+       */
+      function showArticle(contentId, clickedLink) {
+        // 1. 모든 콘텐츠 숨기기
+        const allCards = document.querySelectorAll(
+          ".article-body-area .content-card"
+        );
+        allCards.forEach((card) => {
+          card.classList.add("hidden");
+        });
+
+        // 2. 모든 사이드바 링크의 활성화 상태 해제
+        const allLinks = document.querySelectorAll(".sub-selection-list a");
+        allLinks.forEach((link) => {
+          link.classList.remove("sidebar-link-active");
+        });
+
+        // 3. 선택된 콘텐츠 표시
+        const selectedContent = document.getElementById(contentId);
+        if (selectedContent) {
+          selectedContent.classList.remove("hidden");
+        }
+
+        // 4. 선택된 링크 활성화
+        if (clickedLink) {
+          clickedLink.classList.add("sidebar-link-active");
+        }
+      }
+    </script>
   </body>
 </html>

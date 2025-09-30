@@ -11,17 +11,23 @@
 :root {
   /* 체스 테마 색상 */
   --color-primary: #006d77; /* 남색/청록색 계열 (메인 강조색) */
+  --color-primary-dark: #004d53; /* 남색/청록색 계열 (메인 강조색 - 다크) */
   --color-secondary: #edd7a3; /* 베이지색 계열 (배경/카드 강조색) */
   --color-background: #f7f9fb; /* 배경색 */
+  --color-background-secondary: #ffffff; /* 보조 배경색 (주로 카드 내부/aside) */
   --color-text-dark: #1f2937; /* 진한 텍스트 */
-  --color-text-light: #525a65; /* 밝은 텍스트 (본문) */
-  --color-accent-soft: #edf6f9; /* 옅은 배경 (카드 배경) */
+  --color-text-body: #525a65; /* 본문 텍스트 */
+  --color-text-light: #888; /* 밝은 텍스트 */
+  --color-accent-soft: #edf6f9; /* 옅은 배경 (활성화/호버 배경) */
   --color-border: #e5e7eb; /* 경계선 */
 
   /* 간격 변수 */
+  --spacing-tiny: 0.3rem;
   --spacing-small: 0.5rem;
   --spacing-medium: 1rem;
   --spacing-large: 2rem;
+  --border-radius: 0.5rem;
+  --header-height: 80px; /* 대략적인 헤더+네비게이션 높이 */
 }
 
 /* Inter 폰트 설정 */
@@ -54,6 +60,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* --- [추가됨: 동적 콘텐츠 제어를 위한 필수 클래스] --- */
+.hidden {
+  display: none !important;
+}
+/* ------------------------------------------------ */
+
 /* 1.3 공통 컨테이너 및 섹션 스타일 */
 .container {
   max-width: 1280px;
@@ -71,9 +83,9 @@ main {
 }
 
 .content-card {
-  background-color: #ffffff;
+  background-color: var(--color-background-secondary);
   border: 1px solid var(--color-border);
-  border-radius: var(--spacing-small);
+  border-radius: var(--border-radius);
   padding: var(--spacing-large);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin-top: var(--spacing-medium);
@@ -110,7 +122,7 @@ main {
 
 /* 2.1 Header */
 header {
-  background-color: #ffffff;
+  background-color: var(--color-background-secondary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -285,8 +297,8 @@ aside {
   align-self: flex-start;
   height: fit-content;
   border: 1px solid var(--color-border);
-  background-color: #ffffff;
-  border-radius: var(--spacing-small);
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -327,7 +339,7 @@ aside {
 }
 
 .selection-item:hover {
-  background-color: #f0f0f0;
+  background-color: var(--color-accent-soft);
 }
 
 .selection-title {
@@ -366,17 +378,12 @@ aside {
   padding-bottom: var(--spacing-small);
 }
 
-/* 상세 정보 숨김 */
-.piece-detail.hidden {
-  display: none;
-}
-
 /* 4.5 갤러리 미디어 쿼리 */
 @media (max-width: 900px) {
   .gallery-layout {
     flex-direction: column;
   }
-  .card-sidebar {
+  aside {
     width: 100%;
     position: static;
     top: auto;
@@ -386,9 +393,153 @@ aside {
 /* ****************************************************** */
 /* 5. 상세 규칙 & 전략 페이지 (ARTICLE PAGE - article.html) 스타일 */
 /* ****************************************************** */
+.article-layout {
+  display: flex;
+  flex-direction: column; /* 세로 배열 */
+  gap: var(--spacing-large);
+}
 
-/* 긴 글, 표, 인용, figure 스타일을 여기에 추가할 예정입니다. */
-/* 현재는 스타일이 없으므로 빈 섹션으로 둡니다. */
+@media (min-width: 900px) {
+  .article-layout {
+    flex-direction: row; /* PC 2단 배열 */
+    align-items: flex-start;
+  }
+}
+
+/* 5.1 사이드바 (Aside) */
+#article-sidebar {
+  /* 사이드바 기본 배경색 변경 (흰색 대신 연한 배경) */
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-medium);
+  border: 1px solid var(--color-border);
+
+  /* PC 고정 사이드바 설정 */
+  width: 300px;
+  min-width: 300px;
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem); /* 헤더 아래에 고정 */
+}
+
+/* 제목과 사이드바 간의 간격 조정 */
+.sidebar-content {
+  padding-top: var(--spacing-small);
+}
+
+/* 5.2 사이드바 그룹 헤더 (규칙/전략) */
+.sidebar-group-header {
+  cursor: pointer;
+  font-weight: 700;
+  padding: var(--spacing-small) var(--spacing-small); /* 상하, 좌우 간격 조정 */
+  color: var(--color-primary-dark);
+  transition: color 0.2s ease;
+}
+.sidebar-group-header:hover {
+  color: var(--color-primary);
+}
+
+/* 5.3 서브 메뉴 (규칙/전략 하위 목록) */
+.sub-selection-list {
+  list-style: none;
+  overflow: hidden; /* 높이 애니메이션을 위해 overflow 숨김 */
+  transition: max-height 0.3s ease-out;
+  max-height: 0; /* 초기 상태 (숨김) */
+}
+/* [순수 CSS 호버 로직] 그룹에 마우스를 올리면 하위 목록 펼치기 */
+.sidebar-group:hover .sub-selection-list {
+  max-height: 500px; /* 호버 시 펼침 */
+}
+
+.sub-selection-list > li > .selection-item {
+  display: block;
+  padding: var(--spacing-tiny) var(--spacing-medium);
+  margin-bottom: 2px;
+  color: var(--color-text-body);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+.sub-selection-list > li > .selection-item:hover {
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+}
+
+/* 5.4 사이드바 링크 활성화 (클릭된 항목) */
+.sub-selection-list a.sidebar-link-active {
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: var(--color-accent-soft);
+  border-left: 3px solid var(--color-primary-dark);
+}
+
+/* 5.5 아티클 본문 영역 및 콘텐츠 요소 스타일링 */
+
+.article-body-area {
+  flex-grow: 1;
+}
+
+/* 긴 글 (Long Text) */
+.long-text {
+  line-height: 1.7;
+  margin-bottom: var(--spacing-large);
+}
+
+/* 표 (Table) */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-large) 0;
+}
+.data-table th,
+.data-table td {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-medium);
+  text-align: left;
+}
+.data-table th {
+  background-color: var(--color-secondary);
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+/* 인용 (Blockquote) */
+blockquote {
+  border-left: 5px solid var(--color-primary);
+  padding: var(--spacing-large);
+  margin: calc(var(--spacing-large) + 0.5rem) 0;
+  font-style: italic;
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius);
+  color: var(--color-text-dark);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.blockquote-footer {
+  display: block;
+  margin-top: var(--spacing-medium);
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* Figure (그림/다이어그램) */
+.chess-figure {
+  margin: calc(var(--spacing-large) + 0.5rem) 0;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-large);
+  border-radius: var(--border-radius);
+  background-color: var(--color-secondary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.placeholder-diagram {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-medium);
+}
+.figure-caption {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-style: italic;
+}
 
 /* ****************************************************** */
 /* 6. 문의 페이지 (CONTACT PAGE - contact.html) 스타일 */
@@ -474,7 +625,7 @@ textarea.input-style {
 /* 폼 메시지 박스 */
 .form-message-box {
   padding: var(--spacing-medium);
-  border-radius: var(--spacing-small);
+  border-radius: var(--border-radius);
   font-weight: 600;
   margin-bottom: var(--spacing-large);
   text-align: center;
@@ -490,8 +641,4 @@ textarea.input-style {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
-}
-
-.form-message-box.hidden {
-  display: none;
 }
