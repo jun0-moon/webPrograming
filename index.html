@@ -3,53 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T.B.T 볼링 동아리</title>
+    <title>홈 - 체스의 세계 (The World of Chess)</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-
   <body>
     <header>
-      <div class="container header-content">
-        <h1 class="header-title">🎳 T.B.T 볼링 동아리</h1>
+      <div class="container">
+        <div class="header-content">
+          <h1 class="header-title">♟️ 체스의 세계 (The World of Chess)</h1>
+          <p class="header-subtitle">규칙, 역사, 전략을 한눈에</p>
+        </div>
       </div>
+
+      <nav id="main-nav">
+        <div class="container">
+          <ul>
+            <li class="nav-item">
+              <a href="index.html" class="nav-link active">홈</a>
+            </li>
+            <li class="nav-item">
+              <a href="gallery.html" class="nav-link">체스 기물 소개</a>
+            </li>
+            <li class="nav-item">
+              <a href="article.html" class="nav-link">상세 규칙 & 전략</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link">문의하기</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-      <div class="container">
-        <ul>
-          <li class="nav-item">
-            <a href="./index.html" class="nav-link" data-page="home">홈</a>
-          </li>
-          <li class="nav-item">
-            <a href="./gallary.html" class="nav-link" data-page="gallery"
-              >갤러리</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="./article.html" class="nav-link" data-page="article"
-              >상세 리뷰</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="./contact.html" class="nav-link" data-page="contact"
-              >문의</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <main>
-      <div class="container content-card"></div>
+      <div class="container">
+        <section id="home">
+          <h2 class="section-title">
+            👑 체스: 지성과 전략의 왕국에 오신 것을 환영합니다
+          </h2>
+          <p class="section-description">
+            64칸 위에서 펼쳐지는 끝없는 가능성. 체스의 기원과 매력을 탐험하세요.
+          </p>
+
+          <div class="content-card">
+            <!-- 섹션 1: 체스의 기원 -->
+            <h3>체스 역사의 서막</h3>
+            <p>
+              체스는 기원후 6세기경 인도에서 시작된 '차투랑가(Chaturanga)'라는
+              고대 게임에서 유래되었다고 알려져 있습니다. 이 게임은 네 가지
+              병종(보병, 기병, 코끼리, 전차)을 상징했으며, 이것이 페르시아와
+              아랍을 거쳐 서유럽으로 전파되면서 우리가 아는 현대 체스의 형태를
+              갖추게 되었습니다. 중세 유럽에서는 왕족과 귀족 계층의 필수 교양이
+              되었으며, 수많은 전쟁과 정치적 상황을 묘사하는 게임으로
+              발전했습니다.
+            </p>
+
+            <!-- 섹션 2: 체스의 매력 -->
+            <h3 class="mt-8">왜 체스를 배워야 할까요?</h3>
+            <p>
+              체스는 단순한 게임을 넘어선 지적인 훈련입니다. 각 수(手)마다 수십
+              가지의 가능성을 계산해야 하며, 상대방의 의도를 예측하고 자신의
+              전략을 끊임없이 수정해야 합니다. 이러한 과정은 **문제 해결 능력**,
+              **집중력**, 그리고 **장기적인 계획 수립 능력**을 획기적으로
+              향상시킵니다. 체스는 모든 연령대가 즐길 수 있으며, 단 하나의
+              운(Luck) 요소도 없이 오직 실력과 논리만으로 승패가 결정되는 완벽한
+              공정성을 자랑합니다.
+            </p>
+
+            <!-- 섹션 3: 다음 콘텐츠 유도 -->
+            <div class="cta-area mt-8 pt-6 border-t">
+              <h3 class="text-center">더 깊은 체스의 세계로</h3>
+              <p class="text-center mt-2">
+                체스 말들의 움직임과 가치가 궁금하다면 '체스 말 소개' 페이지를,
+                캐슬링과 같은 필수 규칙이 궁금하다면 '상세 규칙 & 전략' 페이지를
+                방문해 보세요.
+              </p>
+              <div class="form-actions" style="justify-content: center">
+                <a href="./gallery.html" class="submit-btn">말 소개 보러가기</a>
+                <a href="./article.html" class="reset-btn">전략 배우러가기</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer>
-      <div class="container footer-content">
-        <p>&copy; 2024 웹프로그래밍 과제 | T.B.T. 볼링 동아리</p>
-        <p class="mt-1">
-          정적 멀티페이지 방식 | 순수 CSS로 스타일링되었습니다.
+      <div class="container">
+        <p class="footer-text">
+          © 2025 체스의 세계 | 웹 프로그래밍 과제용 정적 사이트
         </p>
       </div>
     </footer>
+
+    <!-- 5. 최소한의 JavaScript (정적 페이지이므로 불필요하지만 Nav 활성화를 위한 주석 처리) -->
+    <script>
+      // 이 파일은 정적 멀티페이지 사이트의 홈 페이지(index.html)입니다.
+      // 네비게이션 활성화는 HTML에 직접 'active' 클래스를 사용하여 처리했습니다.
+    </script>
   </body>
 </html>

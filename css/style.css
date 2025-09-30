@@ -1,25 +1,46 @@
+/* Inter 폰트 설정 */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-/* 1. 전역 스타일 초기화 */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* --- CSS 변수 정의 (색상 팔레트) --- */
+:root {
+  /* Theme Colors (체스 테마: 남색 계열) */
+  --color-primary: #006d77;
+  --color-primary-dark: #005f6b;
+
+  /* Layout & Background */
+  --color-bg-body: #f7f9fb;
+  --color-bg-card: #ffffff;
+  --color-bg-nav: #f9f9f9;
+  --color-bg-footer: #374151;
+
+  /* Text & UI */
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-text-nav: #4b5563;
+  --color-text-footer: #d1d5db;
+
+  /* Borders & Dividers */
+  --color-border-light: #e5e7eb;
+  --color-border-input: #d1d5db;
+
+  /* Success Message (Form) */
+  --color-success-bg: #d1fae5;
+  --color-success-text: #065f46;
+  --color-success-border: #34d399;
+}
+
+/* --- 1. 전역 설정 및 레이아웃 --- */
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
-/* 2. 기본 바디 스타일 */
-body {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  background-color: #f7f9fb;
-  color: #1f2937;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* 모든 주요 콘텐츠를 중앙에 모으고 최대 너비를 제한하는 컨테이너 */
 .container {
   max-width: 1280px;
   margin-left: auto;
@@ -28,45 +49,45 @@ body {
   padding-right: 1rem;
 }
 
-main {
-  flex-grow: 1;
-  padding: 1rem;
-}
-
-/* 3. 헤더 스타일 */
+/* --- 2. Header 스타일 --- */
 header {
-  background-color: #ffffff;
+  background-color: var(--color-bg-card);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  position: sticky;
+  position: sticky; /* 스크롤 시 상단 고정 */
   top: 0;
   z-index: 10;
-}
-
-.header-content {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center; /* 헤더 텍스트 중앙 정렬 */
 }
 
 .header-title {
-  font-size: 1.875rem;
+  font-size: 1.875rem; /* 약 30px */
   font-weight: 800;
-  color: #1f2937;
+  color: var(--color-primary);
   letter-spacing: -0.025em;
+  margin-bottom: 0.25rem;
 }
 
-/* 4. 네비게이션 바 스타일 */
+.header-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- 3. Navigation 스타일 --- */
 nav {
-  background-color: #1f2937;
-  color: #ffffff;
+  background-color: var(--color-bg-nav);
+  border-top: 1px solid var(--color-border-light);
+  padding: 0.75rem 0;
 }
 
-nav ul {
-  list-style: none;
+nav .container ul {
   display: flex;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  gap: 1rem;
-  justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  gap: 1rem; /* 모바일 기본 간격 */
   align-items: center;
 }
 
@@ -74,170 +95,211 @@ nav ul {
   position: relative;
 }
 
-.nav-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -0.5rem;
-  transform: translateY(-50%);
-
-  width: 1px;
-  height: 1.5rem; /* 구분선의 높이 */
-  background-color: #6b7280; /* 어두운 배경에 적절한 구분선 색상 */
-}
-
 .nav-link {
-  display: block;
-  padding: 0.5rem;
-  border-radius: 0.375rem;
   text-decoration: none;
-  color: #ffffff;
-  transition: background-color 150ms ease-in-out;
-  white-space: nowrap;
+  color: var(--color-text-nav);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
 }
 
 .nav-link:hover {
-  background-color: #374151;
+  color: var(--color-primary);
 }
 
 .nav-link.active {
   font-weight: 700;
-  color: #f87171;
-  background-color: #374151;
+  color: var(--color-primary); /* 활성 페이지 링크 색상 */
 }
 
-/* 4. Main 콘텐츠 영역 */
-.content-card {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+/* Navigation 항목 간 구분선 (마지막 항목 제외) */
+.nav-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -0.5rem; /* 간격(1rem)의 절반만큼 이동 */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1.25rem;
+  background-color: var(--color-border-input);
+}
+
+/* --- 4. Main 콘텐츠 스타일 --- */
+main {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  min-height: calc(
+    100vh - 8rem - 4rem
+  ); /* Header/Nav와 Footer 높이를 고려한 최소 높이 */
 }
 
 .section-title {
-  text-align: center;
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   font-weight: 700;
-  color: #111827;
-  margin-top: 2rem;
+  color: var(--color-primary);
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border-light);
+  text-align: center;
 }
 
 .section-description {
-  text-align: center;
-  font-size: 1rem;
-  color: #6b7280;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-/* 5. 문의 폼 스타일 */
-.contact-form-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem;
-  background-color: #f9fafb;
+.content-card {
+  background-color: var(--color-bg-card);
   border-radius: 0.75rem;
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  margin-top: 2rem;
 }
 
-.form-label {
+/* --- 5. 폼 (Form) 스타일 --- */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
 }
 
 .input-style {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border-input);
   border-radius: 0.5rem;
-  transition: border-color 150ms, box-shadow 150ms;
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input-style:focus {
+  border-color: var(--color-primary);
   outline: none;
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 0 2px rgba(0, 109, 119, 0.2); /* 포커스 효과 */
+}
+
+.textarea-style {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .input-hint {
-  font-size: 0.75rem;
-  color: #6b7280;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
   margin-top: 0.25rem;
 }
 
-.button-group {
+.form-actions {
   display: flex;
   gap: 1rem;
-  padding-top: 0.5rem;
+  margin-top: 2rem;
 }
 
 .submit-btn,
 .reset-btn {
-  flex: 1 1 0%;
-  font-weight: 600;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  transition: background-color 300ms;
+  padding: 0.75rem 1.5rem;
   border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.2s;
 }
 
 .submit-btn {
-  background-color: #dc2626;
-  color: #ffffff;
+  background-color: var(--color-primary);
+  color: var(--color-bg-card);
 }
+
 .submit-btn:hover {
-  background-color: #b91c1c;
+  background-color: var(--color-primary-dark);
 }
 
 .reset-btn {
-  background-color: #6b7280;
-  color: #ffffff;
+  background-color: #e5e7eb; /* 회색 버튼은 변수 대신 직접 색상 사용 */
+  color: var(--color-text-nav);
 }
+
 .reset-btn:hover {
-  background-color: #4b5563;
+  background-color: var(--color-border-input);
 }
 
+/* 폼 제출 메시지 스타일 */
 .form-message-box {
-  padding: 0.75rem;
-  text-align: center;
-  font-weight: 500;
+  padding: 1rem;
   border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.form-message-box.hidden {
   display: none;
-  transition: all 0.3s ease-in-out;
 }
-.form-message-box.active {
-  display: block;
-}
+
 .form-message-box.success {
-  background-color: #d1fae5;
-  color: #065f46;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
 }
 
-/* 6. 푸터 스타일 */
+/* --- 6. Footer 스타일 --- */
 footer {
-  background-color: #111827;
-  color: #ffffff;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  background-color: var(--color-bg-footer);
+  color: var(--color-text-footer);
+  padding: 1rem 0;
+  text-align: center;
+  border-top: 1px solid var(--color-border-footer);
 }
 
-.footer-content {
-  text-align: center;
+.footer-text {
   font-size: 0.875rem;
-  color: #9ca3af;
+  margin: 0;
 }
-.footer-content p:nth-child(2) {
-  margin-top: 0.25rem;
+
+/* --- 7. 반응형 디자인 (모바일 최적화) --- */
+@media (max-width: 639px) {
+  /* 내비게이션 항목들을 세로로 쌓이거나 스크롤 가능하도록 변경 */
+  nav .container ul {
+    flex-wrap: wrap; /* 항목이 넘치면 다음 줄로 */
+    justify-content: center; /* 모바일에서는 중앙 정렬 */
+  }
+
+  /* 모바일에서는 구분선 숨기기 */
+  .nav-item:not(:last-child)::after {
+    content: none;
+  }
+
+  /* 폼 요소 여백 줄이기 */
+  .content-card {
+    padding: 1.5rem;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* 태블릿/PC (640px 이상) */
+@media (min-width: 640px) {
+  /* PC 간격에 맞게 구분선 재조정 */
+  nav .container ul {
+    gap: 2rem;
+    /* justify-content: flex-start;  왼쪽 정렬은 유지됩니다. */
+  }
+  .nav-item:not(:last-child)::after {
+    right: -1rem; /* 간격(2rem)의 절반만큼 이동 */
+    content: ""; /* 다시 표시 */
+  }
 }

@@ -3,152 +3,159 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>T.B.T 볼링 동아리 - 문의하기</title>
+    <title>문의하기 - 체스 테마 웹사이트</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
     <header>
-      <div class="container header-content">
-        <h1 class="header-title">🎳 T.B.T 볼링 동아리</h1>
+      <div class="container">
+        <div class="header-content">
+          <h1 class="header-title">♟️ 체스의 세계 (The World of Chess)</h1>
+          <p class="header-subtitle">규칙, 역사, 전략을 한눈에</p>
+        </div>
       </div>
+
+      <nav id="main-nav">
+        <div class="container">
+          <ul>
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">홈</a>
+            </li>
+            <li class="nav-item">
+              <a href="gallery.html" class="nav-link">체스 기물 소개</a>
+            </li>
+            <li class="nav-item">
+              <a href="article.html" class="nav-link">상세 규칙 & 전략</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link active">문의하기</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-      <div class="container">
-        <ul>
-          <li class="nav-item">
-            <a href="./index.html" class="nav-link" data-page="home">홈</a>
-          </li>
-          <li class="nav-item">
-            <a href="./gallary.html" class="nav-link" data-page="gallery"
-              >갤러리</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="./article.html" class="nav-link" data-page="article"
-              >상세 리뷰</a
-            >
-          </li>
-          <li class="nav-item">
-            <a href="./contact.html" class="nav-link" data-page="contact"
-              >문의</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <main>
-      <div class="container content-card">
+      <div class="container">
         <section id="contact">
-          <h2 class="section-title">📧 가입 및 활동 문의</h2>
+          <h2 class="section-title">📬 문의 및 피드백</h2>
           <p class="section-description">
-            사이트 이용 중 궁금한 점이나 제휴 문의 사항이 있으시면 아래 양식을
-            작성해 주세요.
+            사이트 이용 중 궁금한 점이나 체스 관련 질문을 남겨주세요.
           </p>
-          <form id="contact-form" class="contact-form-layout" novalidate>
-            <!-- 1. 이름 필드 (required, placeholder) -->
-            <div class="form-group">
-              <label class="form-label" for="name">성함</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="성함을 입력하세요 (필수)"
-                class="input-style"
-              />
-            </div>
 
-            <!-- 2. 이메일 필드 (type, required, pattern, aria-describedby) -->
-            <div class="form-group">
-              <label class="form-label" for="email">이메일 주소</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="example@domain.com"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                aria-describedby="email-hint"
-                class="input-style"
-              />
-              <p id="email-hint" class="input-hint">
-                올바른 이메일 형식(예: user@example.com)을 입력해야 합니다.
-              </p>
-            </div>
+          <div class="content-card">
+            <form id="contact-form" action="#" method="POST">
+              <!-- 1. 이름 필드 (required, placeholder) -->
+              <div class="form-group">
+                <label for="name">이름</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="성함을 입력하세요 (필수)"
+                  minlength="2"
+                  class="input-style"
+                />
+              </div>
 
-            <!-- 3. 연락 목적 필드 (required, minlength) -->
-            <div class="form-group">
-              <label class="form-label" for="subject">연락 목적</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                required
-                minlength="5"
-                placeholder="최소 5자 이상 입력하세요 (필수)"
-                class="input-style"
-              />
-            </div>
+              <!-- 2. 이메일 필드 (type, required, pattern, aria-describedby) -->
+              <div class="form-group">
+                <label for="email">이메일 주소</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="example@domain.com"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  aria-describedby="email-hint"
+                  class="input-style"
+                />
+                <p id="email-hint" class="input-hint">
+                  올바른 이메일 형식(예: user@example.com)을 입력해야 합니다.
+                </p>
+              </div>
 
-            <!-- 4. 메시지 필드 (required, minlength) -->
-            <div class="form-group">
-              <label class="form-label" for="message">메시지 내용</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-                minlength="10"
-                placeholder="자세한 문의 내용을 10자 이상 입력하세요 (필수)"
-                class="input-style"
-              ></textarea>
-            </div>
+              <!-- 3. 연락 목적 필드 (SELECT로 변경) -->
+              <div class="form-group">
+                <label for="subject">연락 목적</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  required
+                  class="input-style"
+                >
+                  <option value="" disabled selected>
+                    -- 목적을 선택해 주세요 --
+                  </option>
+                  <option value="site_error">사이트 오류 보고</option>
+                  <option value="chess_question">체스 관련 질문</option>
+                  <option value="content_suggestion">콘텐츠 제안</option>
+                  <option value="etc">기타</option>
+                </select>
+              </div>
 
-            <!-- 5. 제출 및 리셋 버튼 -->
-            <div class="button-group">
-              <button class="submit-btn" type="submit">제출</button>
-              <button class="reset-btn" type="reset">초기화</button>
-            </div>
+              <!-- 4. 메시지 필드 (required, minlength) -->
+              <div class="form-group">
+                <label for="message">메시지 내용</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  minlength="10"
+                  placeholder="구체적인 내용을 입력해 주세요 (최소 10자)"
+                  class="input-style textarea-style"
+                ></textarea>
+              </div>
 
-            <div id="form-message"></div>
-          </form>
+              <div id="form-message" class="form-message-box hidden"></div>
+
+              <!-- 5. 제출 및 리셋 버튼 -->
+              <div class="button-group">
+                <button class="submit-btn" type="submit">제출</button>
+                <button class="reset-btn" type="reset">초기화</button>
+              </div>
+            </form>
+          </div>
         </section>
       </div>
     </main>
 
     <footer>
-      <div class="container footer-content">
-        <p>&copy; 2024 웹프로그래밍 과제 | T.B.T. 볼링 동아리</p>
-        <p class="mt-1">
-          정적 멀티페이지 방식 | 순수 CSS로 스타일링되었습니다.
+      <div class="container">
+        <p class="footer-text">
+          © 2025 체스의 세계 | 웹 프로그래밍 과제용 정적 사이트
         </p>
       </div>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const contactForm = document.getElementById("contact-form");
-        const formMessage = document.getElementById("form-message");
+      // 현재 페이지의 nav link 활성화 (contact.html)는 HTML에 active 클래스로 이미 지정됨
 
-        if (contactForm && formMessage) {
-          contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+      // 폼 제출 시 알림 메시지 표시 (정적 사이트이므로 실제 데이터 전송은 없음)
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 실제 폼 전송 방지
 
-            formMessage.textContent =
-              "✅ 문의가 성공적으로 접수되었습니다. (실제 데이터 전송은 없음)";
-            formMessage.className = "form-message-box active success"; // 스타일 변경
+          const messageBox = document.getElementById("form-message");
+          messageBox.innerHTML =
+            "✅ 문의가 성공적으로 접수되었습니다. (정적 사이트이므로 실제 전송은 되지 않습니다.)";
+          messageBox.classList.remove("hidden");
+          messageBox.classList.add("success"); // 성공 메시지 스타일 적용
+        });
 
-            contactForm.reset();
-
-            setTimeout(() => {
-              formMessage.classList.remove("active");
-            }, 5000);
-          });
-        }
-      });
+      // 폼 초기화 시 메시지 숨기기
+      document
+        .getElementById("contact-form")
+        .addEventListener("reset", function (event) {
+          const messageBox = document.getElementById("form-message");
+          messageBox.classList.add("hidden");
+          messageBox.classList.remove("success");
+          messageBox.innerHTML = "";
+        });
     </script>
   </body>
 </html>
