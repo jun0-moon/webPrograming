@@ -1,94 +1,153 @@
+/*
+    통합 스타일시트 (css/style.css)
+    체스 완전 정복 웹사이트 | 순수 CSS, CSS 변수 사용
+*/
+
+/* ****************************************************** */
+/* 1. 글로벌 설정 & 공통 레이아웃 (GLOBAL & COMMON LAYOUT) */
+/* ****************************************************** */
+
+/* 1.1 CSS 변수 (Custom Properties) 및 폰트 설정 */
+:root {
+  /* 체스 테마 색상 */
+  --color-primary: #006d77; /* 남색/청록색 계열 (메인 강조색) */
+  --color-secondary: #edd7a3; /* 베이지색 계열 (배경/카드 강조색) */
+  --color-background: #f7f9fb; /* 배경색 */
+  --color-text-dark: #1f2937; /* 진한 텍스트 */
+  --color-text-light: #525a65; /* 밝은 텍스트 (본문) */
+  --color-accent-soft: #edf6f9; /* 옅은 배경 (카드 배경) */
+  --color-border: #e5e7eb; /* 경계선 */
+
+  /* 간격 변수 */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+}
+
 /* Inter 폰트 설정 */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-/* --- CSS 변수 정의 (색상 팔레트) --- */
-:root {
-  /* Theme Colors (체스 테마: 남색 계열) */
-  --color-primary: #006d77;
-  --color-primary-dark: #005f6b;
-
-  /* Layout & Background */
-  --color-bg-body: #f7f9fb;
-  --color-bg-card: #ffffff;
-  --color-bg-nav: #f9f9f9;
-  --color-bg-footer: #374151;
-
-  /* Text & UI */
-  --color-text-primary: #1f2937;
-  --color-text-secondary: #6b7280;
-  --color-text-nav: #4b5563;
-  --color-text-footer: #d1d5db;
-
-  /* Borders & Dividers */
-  --color-border-light: #e5e7eb;
-  --color-border-input: #d1d5db;
-
-  /* Success Message (Form) */
-  --color-success-bg: #d1fae5;
-  --color-success-text: #065f46;
-  --color-success-border: #34d399;
-}
-
-/* --- 1. 전역 설정 및 레이아웃 --- */
-body {
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-body);
-  line-height: 1.6;
+/* 1.2 HTML 요소 기본 스타일 및 리셋 */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* 모든 주요 콘텐츠를 중앙에 모으고 최대 너비를 제한하는 컨테이너 */
-.container {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* --- 2. Header 스타일 --- */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 1.3 공통 컨테이너 및 섹션 스타일 */
+.container {
+  max-width: 1280px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+}
+
+main {
+  flex-grow: 1;
+  padding-top: var(--spacing-large);
+  padding-bottom: var(--spacing-large);
+}
+
+.content-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--spacing-small);
+  padding: var(--spacing-large);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-top: var(--spacing-medium);
+}
+
+/* 1.4 공통 타이포그래피 스타일 */
+.section-title,
+.section-subtitle {
+  margin-bottom: var(--spacing-medium);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 2px solid var(--color-secondary);
+  display: inline-block;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  text-align: left;
+  margin-top: var(--spacing-large);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-small);
+}
+
+/* ****************************************************** */
+/* 2. 공통 컴포넌트 (HEADER, NAVIGATION, FOOTER) */
+/* ****************************************************** */
+
+/* 2.1 Header */
 header {
-  background-color: var(--color-bg-card);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  position: sticky; /* 스크롤 시 상단 고정 */
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
   top: 0;
   z-index: 10;
-  padding-top: 1.5rem;
-  padding-bottom: 0.5rem;
-  text-align: center; /* 헤더 텍스트 중앙 정렬 */
+  padding: var(--spacing-medium) 0;
+}
+
+.header-content {
+  text-align: center;
 }
 
 .header-title {
-  font-size: 1.875rem; /* 약 30px */
+  font-size: 1.875rem;
   font-weight: 800;
-  color: var(--color-primary);
-  letter-spacing: -0.025em;
-  margin-bottom: 0.25rem;
+  letter-spacing: -0.05em;
+  color: var(--color-text-dark);
 }
 
 .header-subtitle {
   font-size: 1rem;
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-top: var(--spacing-small);
 }
 
-/* --- 3. Navigation 스타일 --- */
+/* 2.2 Navigation (Nav) */
 nav {
-  background-color: var(--color-bg-nav);
-  border-top: 1px solid var(--color-border-light);
-  padding: 0.75rem 0;
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav .container ul {
-  display: flex;
+nav ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: flex-start; /* 왼쪽 정렬 */
-  gap: 1rem; /* 모바일 기본 간격 */
-  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  padding: var(--spacing-small) 0;
+  gap: var(--spacing-large);
 }
 
 .nav-item {
@@ -96,210 +155,343 @@ nav .container ul {
 }
 
 .nav-link {
-  text-decoration: none;
-  color: var(--color-text-nav);
-  font-weight: 500;
+  display: block;
   padding: 0.5rem 0;
-  transition: color 0.2s;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
-  color: var(--color-primary);
+  color: var(--color-secondary);
+  text-decoration: none;
 }
 
 .nav-link.active {
+  color: var(--color-secondary);
   font-weight: 700;
-  color: var(--color-primary); /* 활성 페이지 링크 색상 */
+  border-bottom: 2px solid var(--color-secondary);
 }
 
-/* Navigation 항목 간 구분선 (마지막 항목 제외) */
+/* 구분선 스타일 */
 .nav-item:not(:last-child)::after {
   content: "";
   position: absolute;
-  right: -0.5rem; /* 간격(1rem)의 절반만큼 이동 */
+  right: calc(-1 * var(--spacing-medium));
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
-  height: 1.25rem;
-  background-color: var(--color-border-input);
+  height: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-/* --- 4. Main 콘텐츠 스타일 --- */
-main {
-  padding-top: 2rem;
-  padding-bottom: 4rem;
-  min-height: calc(
-    100vh - 8rem - 4rem
-  ); /* Header/Nav와 Footer 높이를 고려한 최소 높이 */
+/* 2.3 Navigation 미디어 쿼리 */
+@media (min-width: 640px) {
+  nav ul {
+    gap: var(--spacing-large);
+  }
+  .nav-item:not(:last-child)::after {
+    right: calc(-0.5 * var(--spacing-large));
+  }
 }
 
-.section-title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border-light);
+@media (max-width: 639px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+  .nav-item:not(:last-child)::after {
+    content: none;
+  }
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* 2.4 Footer 스타일 */
+footer {
+  background-color: var(--color-text-dark);
+  color: #ffffff;
+  padding: var(--spacing-medium) 0;
   text-align: center;
+  margin-top: var(--spacing-large);
 }
 
-.section-description {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 2rem;
-  text-align: center;
+footer p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.content-card {
-  background-color: var(--color-bg-card);
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  padding: 2.5rem;
-  margin-top: 2rem;
-}
+/* ****************************************************** */
+/* 3. 홈 페이지 (HOME PAGE - index.html) 스타일 */
+/* ****************************************************** */
 
-/* --- 5. 폼 (Form) 스타일 --- */
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
+/* 홈 페이지는 대부분 공통 스타일을 사용하며, 아래는 .content-card 내부의 소제목 스타일링입니다. */
+.content-card h3 {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 0.5rem;
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
 }
 
-.input-style {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border-input);
-  border-radius: 0.5rem;
-  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+.content-card h3:first-child {
+  margin-top: 0;
 }
 
-.input-style:focus {
-  border-color: var(--color-primary);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 109, 119, 0.2); /* 포커스 효과 */
+/* CTA (Call to Action) 영역 스타일 */
+.cta-area {
+  margin-top: var(--spacing-large);
+  padding-top: var(--spacing-large);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
 }
 
-.textarea-style {
-  min-height: 100px;
-  resize: vertical;
+.cta-area h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: var(--spacing-medium);
 }
 
-.input-hint {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  margin-top: 0.25rem;
+.cta-area p {
+  margin-bottom: var(--spacing-large);
 }
 
-.form-actions {
+/* ****************************************************** */
+/* 4. 체스 기물 소개 페이지 (GALLERY PAGE - gallery.html) 스타일 */
+/* ****************************************************** */
+
+/* 4.1 2단 레이아웃 설정 */
+.gallery-layout {
   display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: var(--spacing-large);
+  margin-top: var(--spacing-medium);
+}
+
+/* 왼쪽 사이드바 (기물 선택 목록) */
+aside {
+  width: 300px;
+  flex-shrink: 0;
+  padding: 0;
+  position: sticky;
+  top: calc(80px + var(--spacing-medium)); /* 헤더/네비 아래에 고정 */
+  align-self: flex-start;
+  height: fit-content;
+  border: 1px solid var(--color-border);
+  background-color: #ffffff;
+  border-radius: var(--spacing-small);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.section-title-sidebar,
+.section-description-sidebar {
+  text-align: left;
+  padding: var(--spacing-medium);
+  margin: 0;
+}
+
+.section-title-sidebar {
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-description-sidebar {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* 4.2 선택 목록 스타일 */
+.selection-list {
+  border-radius: 0 0 var(--spacing-small) var(--spacing-small);
+  overflow: hidden;
+  padding-bottom: 1px;
+}
+
+.selection-item {
+  cursor: pointer;
+  padding: var(--spacing-medium) var(--spacing-large);
+  transition: background-color 0.2s, border-left 0.2s;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.selection-item:last-child {
+  border-bottom: none;
+}
+
+.selection-item:hover {
+  background-color: #f0f0f0;
+}
+
+.selection-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.selection-value {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+/* 4.3 동적 활성화 스타일 */
+.piece-card-active {
+  background-color: var(--color-accent-soft);
+  border-left: 5px solid var(--color-primary);
+  font-weight: 700;
+}
+
+/* 4.4 상세 정보 영역 */
+.piece-detail-area {
+  flex-grow: 1;
+}
+
+.piece-detail {
+  margin-top: var(--spacing-medium);
+  transition: opacity 0.3s;
+}
+
+.piece-detail h4 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: var(--spacing-small);
+}
+
+/* 상세 정보 숨김 */
+.piece-detail.hidden {
+  display: none;
+}
+
+/* 4.5 갤러리 미디어 쿼리 */
+@media (max-width: 900px) {
+  .gallery-layout {
+    flex-direction: column;
+  }
+  .card-sidebar {
+    width: 100%;
+    position: static;
+    top: auto;
+  }
+}
+
+/* ****************************************************** */
+/* 5. 상세 규칙 & 전략 페이지 (ARTICLE PAGE - article.html) 스타일 */
+/* ****************************************************** */
+
+/* 긴 글, 표, 인용, figure 스타일을 여기에 추가할 예정입니다. */
+/* 현재는 스타일이 없으므로 빈 섹션으로 둡니다. */
+
+/* ****************************************************** */
+/* 6. 문의 페이지 (CONTACT PAGE - contact.html) 스타일 */
+/* ****************************************************** */
+
+.form-group {
+  margin-bottom: var(--spacing-large);
+}
+
+label {
+  display: block;
+  margin-bottom: var(--spacing-small);
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.input-style,
+.select-style {
+  width: 100%;
+  padding: var(--spacing-medium);
+  border: 1px solid var(--color-border);
+  border-radius: var(--spacing-small);
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-style:focus,
+.select-style:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 109, 119, 0.2);
+  outline: none;
+}
+
+textarea.input-style {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* 폼 힌트 텍스트 */
+.input-hint {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-top: 0.3rem;
+}
+
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: var(--spacing-medium);
+  justify-content: flex-end;
+  margin-top: var(--spacing-large);
 }
 
 .submit-btn,
 .reset-btn {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
+  padding: var(--spacing-small) var(--spacing-large);
+  font-size: 1rem;
   font-weight: 600;
+  border: none;
+  border-radius: var(--spacing-small);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s, opacity 0.3s;
 }
 
 .submit-btn {
   background-color: var(--color-primary);
-  color: var(--color-bg-card);
+  color: #ffffff;
 }
 
 .submit-btn:hover {
-  background-color: var(--color-primary-dark);
+  background-color: #004d53;
 }
 
 .reset-btn {
-  background-color: #e5e7eb; /* 회색 버튼은 변수 대신 직접 색상 사용 */
-  color: var(--color-text-nav);
+  background-color: var(--color-border);
+  color: var(--color-text-dark);
 }
 
 .reset-btn:hover {
-  background-color: var(--color-border-input);
+  background-color: #c7c7c7;
 }
 
-/* 폼 제출 메시지 스타일 */
+/* 폼 메시지 박스 */
 .form-message-box {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
+  padding: var(--spacing-medium);
+  border-radius: var(--spacing-small);
   font-weight: 600;
+  margin-bottom: var(--spacing-large);
+  text-align: center;
+}
+
+.form-message-box.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-message-box.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
 .form-message-box.hidden {
   display: none;
-}
-
-.form-message-box.success {
-  background-color: var(--color-success-bg);
-  color: var(--color-success-text);
-  border: 1px solid var(--color-success-border);
-}
-
-/* --- 6. Footer 스타일 --- */
-footer {
-  background-color: var(--color-bg-footer);
-  color: var(--color-text-footer);
-  padding: 1rem 0;
-  text-align: center;
-  border-top: 1px solid var(--color-border-footer);
-}
-
-.footer-text {
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-/* --- 7. 반응형 디자인 (모바일 최적화) --- */
-@media (max-width: 639px) {
-  /* 내비게이션 항목들을 세로로 쌓이거나 스크롤 가능하도록 변경 */
-  nav .container ul {
-    flex-wrap: wrap; /* 항목이 넘치면 다음 줄로 */
-    justify-content: center; /* 모바일에서는 중앙 정렬 */
-  }
-
-  /* 모바일에서는 구분선 숨기기 */
-  .nav-item:not(:last-child)::after {
-    content: none;
-  }
-
-  /* 폼 요소 여백 줄이기 */
-  .content-card {
-    padding: 1.5rem;
-  }
-
-  .header-title {
-    font-size: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-  }
-}
-
-/* 태블릿/PC (640px 이상) */
-@media (min-width: 640px) {
-  /* PC 간격에 맞게 구분선 재조정 */
-  nav .container ul {
-    gap: 2rem;
-    /* justify-content: flex-start;  왼쪽 정렬은 유지됩니다. */
-  }
-  .nav-item:not(:last-child)::after {
-    right: -1rem; /* 간격(2rem)의 절반만큼 이동 */
-    content: ""; /* 다시 표시 */
-  }
 }
