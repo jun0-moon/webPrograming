@@ -21,6 +21,10 @@
   --color-accent-soft: #edf6f9; /* 옅은 배경 (활성화/호버 배경) */
   --color-border: #e5e7eb; /* 경계선 */
 
+  /* 체스판 다이어그램 색상 변수 */
+  --board-color-light: #f0d9b5; /* 밝은 칸 (베이지) */
+  --board-color-dark: #b58863; /* 어두운 칸 (갈색) */
+
   /* 간격 변수 */
   --spacing-tiny: 0.3rem;
   --spacing-small: 0.5rem;
@@ -339,7 +343,7 @@ aside {
 }
 
 .selection-item:hover {
-  background-color: var(--color-accent-soft);
+  background-color: #f0f0f0;
 }
 
 .selection-title {
@@ -376,6 +380,160 @@ aside {
   margin-bottom: var(--spacing-medium);
   border-bottom: 2px solid var(--color-secondary);
   padding-bottom: var(--spacing-small);
+}
+
+/* 텍스트와 다이어그램을 가로로 배치 */
+.piece-detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-medium);
+}
+
+/* 상세 정보 숨김 */
+.piece-detail.hidden {
+  display: none;
+}
+
+/* --- 체스 움직임 다이어그램 스타일링 --- */
+.chess-diagram-container {
+  text-align: center;
+  padding: var(--spacing-medium) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.diagram-title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-medium);
+  color: var(--color-primary-dark);
+}
+
+.chess-diagram {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 256px; /* 8칸 * 32px/칸 */
+  height: 256px;
+  margin: auto;
+  border: 3px solid var(--color-primary-dark);
+}
+
+.square {
+  width: 100%;
+  height: 100%;
+  /* 밝은 칸과 어두운 칸의 색상 교차는 패턴으로 설정됨 */
+  background-color: var(--board-color-light);
+  position: relative; /* ::after 요소를 위해 필요 */
+}
+
+/* 체스판 색상 패턴 설정 (어두운 칸) */
+.square:nth-child(16n),
+.square:nth-child(16n-2),
+.square:nth-child(16n-4),
+.square:nth-child(16n-6),
+.square:nth-child(16n-9),
+.square:nth-child(16n-11),
+.square:nth-child(16n-13),
+.square:nth-child(16n-15) {
+  background-color: var(--board-color-dark);
+}
+
+/* ---------------------------------------------------- */
+/* 이동 가능 위치 (Move) - 점과 X 표시 로직 */
+/* ---------------------------------------------------- */
+
+/* 1. 이동 가능 위치 (Dot) */
+.move::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary); /* 테마 색상으로 점 찍기 */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+}
+
+/* 2. 폰의 공격 위치 (Capture) - X 표시 */
+.capture::after {
+  content: "×"; /* X 표시 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f00; /* 공격을 나타내는 빨간색 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 시작 위치 (Start) */
+.start {
+  /* 기물 주변의 시작 위치는 연한 배경으로 유지 */
+  background-color: #f7b78f !important;
+}
+
+/* 기물 위치 (King, Queen 등) */
+.king,
+.queen,
+.rook,
+.bishop,
+.knight,
+.pawn {
+  /* 기물 위치는 빨간색이 아닌, 테마 색상 기반의 색상으로 변경 */
+  background-color: var(--color-primary) !important;
+  color: white;
+}
+.king::after,
+.queen::after,
+.rook::after,
+.bishop::after,
+.knight::after,
+.pawn::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  line-height: normal; /* flex 중앙 정렬 사용으로 line-height 무시 */
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.king::after {
+  content: "♔";
+}
+.queen::after {
+  content: "♕";
+}
+.rook::after {
+  content: "♖";
+}
+.bishop::after {
+  content: "♗";
+}
+.knight::after {
+  content: "♘";
+}
+.pawn::after {
+  content: "♙";
+}
+
+/* [추가됨] 다이어그램을 텍스트 옆에 배치 (float: left 효과) */
+@media (min-width: 900px) {
+  .chess-diagram-container {
+    margin-right: var(--spacing-large); /* 텍스트와의 간격 */
+    margin-bottom: var(--spacing-medium); /* 아래 요소와의 간격 */
+    padding-top: 0;
+    border-top: none;
+  }
 }
 
 /* 4.5 갤러리 미디어 쿼리 */
