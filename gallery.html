@@ -38,10 +38,12 @@
 
     <main>
       <div class="container">
-        <h2 class="section-title">체스 기물 소개</h2>
-        <p class="section-description-sidebar">
-          각 기물을 클릭하면 상세한 움직임과 역할 설명을 볼 수 있습니다.
-        </p>
+        <div style="display: flex; align-items: center">
+          <h2 class="section-title">체스 기물 소개</h2>
+          <p class="section-description-sidebar">
+            각 기물을 클릭하면 상세한 움직임과 역할 설명을 볼 수 있습니다.
+          </p>
+        </div>
 
         <div class="gallery-layout">
           <!-- A. 사이드바 (기물 선택 목록) -->
@@ -80,6 +82,44 @@
             <div class="content-card piece-detail" id="king-detail">
               <h4>킹 (King) ♔</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>최우선 기물</strong>게임의 승패를 결정짓는 핵심
+                      기물.
+                    </li>
+                    <li>
+                      <strong>특수 규칙</strong>캐슬링을 통해 룩과 위치를 바꿀
+                      수 있음.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>후반 전투력</strong>엔드게임(Endgame)에서 강력한
+                      공격 및 수비 능력 발휘.
+                    </li>
+                    <li>
+                      <strong>중앙 활성화</strong>폰을 지원하거나 상대 진영
+                      약점을 공격하는 데 필수적.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>낮은 기동성</strong>이동 거리가 짧아 기동성이 매우
+                      낮음.
+                    </li>
+                    <li>
+                      <strong>안전</strong>체크메이트 위험 때문에 항상 안전한
+                      곳에 배치해야 함.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -150,17 +190,50 @@
                     <div class="square"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>게임의 목표:</strong> 킹은 게임에서 가장 중요한
-                  기물입니다. 킹이 체크메이트를 당하면 게임이 종료되므로, 킹의
-                  안전이 최우선입니다. 킹의 가치는 무한대(&infin;)로 측정됩니다.
-                </p>
               </div>
             </div>
 
             <div class="content-card piece-detail hidden" id="queen-detail">
               <h4>퀸 (Queen) ♕</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>최강 기물</strong>룩과 비숍의 움직임을 모두 합친
+                      가장 강력한 기물.
+                    </li>
+                    <li>
+                      <strong>주요 임무</strong>공격과 수비 모든 면에서 가장
+                      다재다능하며, 중앙 장악에 핵심.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>압도적 기동성</strong>체스판 전체를 즉각적으로
+                      커버 가능.
+                    </li>
+                    <li>
+                      <strong>공격력</strong>단독으로도 체크메이트 공격을 수행할
+                      수 있는 능력.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>잃으면 치명적</strong>가치가 매우 높아 잃으면
+                      게임을 지는 경우가 많음.
+                    </li>
+                    <li>
+                      <strong>운용 주의</strong>초반에 불필요한 위험에 노출되지
+                      않도록 신중하게 운용해야 함.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -231,16 +304,50 @@
                     <div class="square move"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>체스판의 여왕:</strong> 퀸은 룩과 비숍의 움직임을 모두
-                  합친 가장 강력하고 다재다능한 기물입니다.
-                </p>
               </div>
             </div>
 
             <div class="content-card piece-detail hidden" id="rook-detail">
               <h4>룩 (Rook) ♖</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>직선 이동</strong>수직 또는 수평 방향으로 거리
+                      제한 없이 이동.
+                    </li>
+                    <li>
+                      <strong>특수 규칙</strong>킹과 함께 <b>캐슬링</b>을
+                      수행하는 유일한 기물.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>오픈 파일</strong>체스판이 개방될수록 강력하며,
+                      개방된 세로줄(파일) 장악에 유리.
+                    </li>
+                    <li>
+                      <strong>후반 지배력</strong>후반전(Endgame)에서 킹과
+                      협력하여 승리를 이끄는 핵심 기물.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>닫힌 포지션</strong>닫힌 포지션에서는 폰 등에 막혀
+                      기동성이 떨어짐.
+                    </li>
+                    <li>
+                      <strong>외로운 룩</strong>퀸이나 킹으로부터 지원 없이 홀로
+                      두면 위험함.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -311,17 +418,50 @@
                     <div class="square"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>직선 공격수:</strong> 룩은 수직 또는 수평 방향으로
-                  원하는 만큼 이동할 수 있습니다. 체스판이 열릴수록 강력해지며,
-                  후반부(Endgame)에서 매우 중요한 역할을 합니다.
-                </p>
               </div>
             </div>
 
             <div class="content-card piece-detail hidden" id="bishop-detail">
               <h4>비숍 (Bishop) ♗</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>대각선 이동</strong>대각선 방향으로 거리 제한 없이
+                      이동.
+                    </li>
+                    <li>
+                      <strong>색깔 제한</strong>자신의 칸 색깔(밝은 칸/어두운
+                      칸)을 벗어날 수 없음.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>장거리 공격</strong>열린 대각선에서 원거리 공격 및
+                      수비 가능.
+                    </li>
+                    <li>
+                      <strong>쌍 비숍</strong>두 비숍이 협력할 때(Bishop Pair)
+                      위력 극대화.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>절반 통제</strong>체스판의 절반만 통제 가능하여
+                      활용 범위에 한계가 있음.
+                    </li>
+                    <li>
+                      <strong>닫힌 포지션</strong>폰 등에 의해 대각선이 막히면
+                      무력해짐.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -392,17 +532,54 @@
                     <div class="square move"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>대각선 전문가:</strong> 비숍은 대각선 방향으로 원하는
-                  만큼 이동할 수 있습니다. 게임이 시작될 때 두 기물(밝은 색 칸,
-                  어두운 색 칸)로 나뉘며, 자신의 칸 색깔을 벗어날 수 없습니다.
-                </p>
               </div>
             </div>
 
             <div class="content-card piece-detail hidden" id="knight-detail">
               <h4>나이트 (Knight) ♘</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>점프</strong>다른 기물을
+                      <b>뛰어넘을 수 있는</b> 유일한 기물.
+                    </li>
+                    <li>
+                      <strong>색깔 변화</strong>이동할 때마다
+                      <b>칸의 색(밝은 칸 ↔ 어두운 칸)</b>이 반드시 바뀜.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>닫힌 포지션</strong>기물이 많은 닫힌 포지션에서
+                      가장 강력함.
+                    </li>
+                    <li>
+                      <strong>포크 공격</strong>상대 기물 두 개 이상을 동시에
+                      공격하는 <b>포크(Fork)</b>에 탁월.
+                    </li>
+                    <li>
+                      <strong>중앙 통제</strong>중앙에 배치될 때 가장 많은 칸을
+                      공격할 수 있어 위력이 극대화됨.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>느린 이동</strong>이동 경로가 복잡하고 느려 먼
+                      거리를 이동하는 데 불리함.
+                    </li>
+                    <li>
+                      <strong>구석 배치</strong>체스판 구석에 몰리면 기동력이
+                      크게 저하됨.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -473,21 +650,59 @@
                     <div class="square"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>기사도의 상징:</strong> 나이트는 유일하게 다른 기물을
-                  뛰어넘을 수 있으며, 'L'자 형태로 이동합니다 (가로 2칸, 세로
-                  1칸 또는 세로 2칸, 가로 1칸).
-                </p>
               </div>
             </div>
 
             <div class="content-card piece-detail hidden" id="pawn-detail">
               <h4>폰 (Pawn) ♙</h4>
               <div class="piece-detail-container">
+                <div class="detail-text-grid">
+                  <h5>특징 / 역할</h5>
+                  <ul>
+                    <li>
+                      <strong>직진 이동</strong>앞으로 <b>한 칸씩만 전진</b> (첫
+                      수는 두 칸 가능).
+                    </li>
+                    <li>
+                      <strong>대각선 공격</strong>기물을 잡을 때는
+                      <b>대각선 한 칸</b>으로 이동.
+                    </li>
+                  </ul>
+
+                  <h5>장점</h5>
+                  <ul>
+                    <li>
+                      <strong>프로모션</strong>상대 진영 끝까지 도달하면 다른
+                      기물로 <b>승진</b> 가능.
+                    </li>
+                    <li>
+                      <strong>구조적 기반</strong>폰 구조(Pawn Structure)는 게임
+                      전략의 기초를 형성.
+                    </li>
+                  </ul>
+
+                  <h5>주의사항</h5>
+                  <ul>
+                    <li>
+                      <strong>후진 불가</strong>한 번 전진한 폰은 뒤로 돌아올 수
+                      없음.
+                    </li>
+                    <li>
+                      <strong>고립된 폰</strong>폰으로 방어할 수 없어서 고립된
+                      폰은 약점이 됨.
+                    </li>
+                    <li>
+                      <strong>뒤처진 폰</strong>주변 폰들보다 뒤에 있어 공격받기
+                      쉬운 약점.
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
                     <!-- 폰은 앞으로 1칸 (첫 수는 2칸), 공격은 대각선 1칸 -->
+                    <div class="square"></div>
                     <div class="square"></div>
                     <div class="square"></div>
                     <div class="square"></div>
@@ -514,7 +729,6 @@
                     <div class="square"></div>
                     <div class="square"></div>
                     <div class="square pawn"></div>
-                    <div class="square"></div>
                     <div class="square"></div>
                     <div class="square"></div>
                     <div class="square"></div>
@@ -554,11 +768,6 @@
                     <div class="square"></div>
                   </div>
                 </div>
-                <p class="long-text">
-                  <strong>체스의 병사:</strong> 폰은 가장 약하지만, 전략적으로
-                  매우 중요한 기물입니다. 앞으로 한 칸씩만 전진할 수 있지만,
-                  상대 기물을 잡을 때는 대각선으로 한 칸 이동합니다.
-                </p>
               </div>
             </div>
           </div>
