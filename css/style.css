@@ -628,6 +628,12 @@ aside {
   max-height: 500px; /* 호버 시 펼침 */
 }
 
+/* (1) 활성화된 링크의 부모 ul을 찾기 위해 :has()와 같은 복잡한 CSS 대신, 
+       JavaScript가 initial-open 클래스를 추가하도록 유도합니다. */
+.sub-selection-list.initial-open {
+  max-height: 500px;
+}
+
 .sub-selection-list > li > .selection-item {
   display: block;
   padding: var(--spacing-tiny) var(--spacing-medium);

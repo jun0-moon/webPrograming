@@ -38,9 +38,10 @@
 
     <main>
       <div class="container">
+        <h2 class="section-title">체스의 심층 규칙 및 고급 전략</h2>
         <div class="article-layout">
           <!-- A. 사이드바 (Aside) -->
-          <aside id="article-sidebar">
+          <aside id="article-sidebar" style="margin-top: var(--spacing-medium)">
             <h3 class="section-title-sidebar">목차 (Contents)</h3>
 
             <div class="sidebar-content">
@@ -173,8 +174,6 @@
 
           <!-- B. 본문 내용 (Article Body) -->
           <div class="article-body-area">
-            <h2 class="section-title">체스의 심층 규칙 및 고급 전략</h2>
-
             <!-- 규칙 그룹 -->
             <!-- 1. 체크와 체크메이트 -->
             <div class="content-card" id="check">
@@ -1357,9 +1356,7 @@
     </footer>
 
     <script>
-      /**
-       * article.html 페이지의 동적 사이드바 및 콘텐츠 전환을 관리하는 JavaScript.
-       */
+      // 1. 초기화 함수를 수정하여 클릭된 항목의 부모 메뉴를 펼치고, 다른 메뉴를 모두 닫는 로직 추가
 
       document.addEventListener("DOMContentLoaded", () => {
         // 1. 초기 상태 설정: 첫 번째 콘텐츠와 링크를 활성화합니다.
@@ -1370,10 +1367,31 @@
 
         // 2. 초기화 함수 실행: 첫 번째 항목을 클릭한 것처럼 처리하여 활성화
         if (firstLink) {
+          // showArticle 호출 시, 부모 메뉴를 펼치는 로직을 포함하여 초기화합니다.
           showArticle(firstContentId, firstLink);
+
+          // 초기 로드 시 첫 번째 그룹을 열어줍니다.
+          const parentUl = firstLink.closest(".sub-selection-list");
+          if (parentUl) {
+            parentUl.classList.add("initial-open");
+            parentUl.classList.add("expanded"); // Expanded도 추가하여 호버 없이도 열리게 함
+          }
         }
 
-        // 3. 사이드바 그룹 헤더 이벤트 리스너 설정
+        // 활성화된 링크의 부모 메뉴를 항상 펼쳐둡니다.
+        // 이 로직은 초기화 후에도 active 클래스가 유지되도록 합니다.
+        const activeLink = document.querySelector(
+          ".sub-selection-list a.sidebar-link-active"
+        );
+        if (activeLink) {
+          const parentUl = activeLink.closest(".sub-selection-list");
+          if (parentUl) {
+            parentUl.classList.add("initial-open");
+            parentUl.classList.add("expanded");
+          }
+        }
+
+        // 3. 사이드바 그룹 헤더 이벤트 리스너 설정 (메뉴 아코디언)
         const groupHeaders = document.querySelectorAll(".sidebar-group-header");
         groupHeaders.forEach((header) => {
           header.addEventListener("click", () => {
@@ -1384,14 +1402,17 @@
               const otherList = otherHeader.nextElementSibling;
               if (
                 otherList !== subList &&
-                otherList.classList.contains("expanded")
+                (otherList.classList.contains("expanded") ||
+                  otherList.classList.contains("initial-open"))
               ) {
                 otherList.classList.remove("expanded");
+                otherList.classList.remove("initial-open");
               }
             });
 
             // 현재 메뉴 토글 (열기/닫기)
             subList.classList.toggle("expanded");
+            subList.classList.toggle("initial-open"); // 초기 열림 상태도 함께 토글
           });
         });
       });
@@ -1414,6 +1435,16 @@
         const allLinks = document.querySelectorAll(".sub-selection-list a");
         allLinks.forEach((link) => {
           link.classList.remove("sidebar-link-active");
+
+          // 링크를 클릭하면 다른 그룹의 메뉴를 닫습니다.
+          const otherParentUl = link.closest(".sub-selection-list");
+          if (otherParentUl) {
+            // 클릭된 링크의 부모 UL이 아닌 경우만 닫습니다.
+            if (otherParentUl !== clickedLink.closest(".sub-selection-list")) {
+              otherParentUl.classList.remove("expanded");
+              otherParentUl.classList.remove("initial-open");
+            }
+          }
         });
 
         // 3. 선택된 콘텐츠 표시
@@ -1425,6 +1456,13 @@
         // 4. 선택된 링크 활성화
         if (clickedLink) {
           clickedLink.classList.add("sidebar-link-active");
+
+          // 클릭된 링크가 속한 그룹을 펼치고 고정합니다.
+          const parentUl = clickedLink.closest(".sub-selection-list");
+          if (parentUl) {
+            parentUl.classList.add("expanded");
+            parentUl.classList.add("initial-open");
+          }
         }
       }
     </script>
