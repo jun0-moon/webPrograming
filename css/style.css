@@ -1,5 +1,5 @@
 /*
-    통합 스타일시트 (css/style.css)
+    통합 스타일시트 (assets/css/style.css)
     체스 완전 정복 웹사이트 | 순수 CSS, CSS 변수 사용
 */
 
@@ -24,6 +24,21 @@
   /* 체스판 다이어그램 색상 변수 */
   --board-color-light: #f0d9b5; /* 밝은 칸 (베이지) */
   --board-color-dark: #b58863; /* 어두운 칸 (갈색) */
+
+  --moved-color-light: #a7e0c8; /* 직전에 움직인 기물 위치 */
+  --moved-color-dark: #50b58e; /* 직전에 움직인 기물 위치 */
+
+  /* 체크 경고 색상 변수 */
+  --check-light-color: rgba(230, 57, 70, 0.5); /* 밝은 칸 (투명도 있는 빨강) */
+  --check-dark-color: rgba(
+    230,
+    57,
+    70,
+    0.7
+  ); /* 어두운 칸 (투명도를 높인 빨강) */
+
+  /* 체스 기물 svg */
+  --chess-svg: url("../assets/img/256px-Chess_Pieces_Sprite.svg.png");
 
   /* 간격 변수 */
   --spacing-tiny: 0.3rem;
@@ -97,7 +112,7 @@ main {
 
 /* 1.4 공통 타이포그래피 스타일 */
 .section-title,
-.section-subtitle {
+.section-sub-title {
   margin-bottom: var(--spacing-medium);
   color: var(--color-primary);
   font-weight: 700;
@@ -111,7 +126,7 @@ main {
   display: inline-block;
 }
 
-.section-subtitle {
+.section-sub-title {
   font-size: 1.5rem;
   color: var(--color-text-dark);
   text-align: left;
@@ -121,7 +136,7 @@ main {
 }
 
 /* ****************************************************** */
-/* 2. 공통 컴포넌트 (HEADER, NAVIGATION, FOOTER) */
+/* 2. 시맨틱 컴포넌트 (HEADER, NAVIGATION, FOOTER) */
 /* ****************************************************** */
 
 /* 2.1 Header */
@@ -249,7 +264,7 @@ footer p {
 /* ****************************************************** */
 
 /* 홈 페이지는 대부분 공통 스타일을 사용하며, 아래는 .content-card 내부의 소제목 스타일링입니다. */
-.content-card h3 {
+.card-title {
   font-size: 1.25rem;
   color: var(--color-text-dark);
   font-weight: 600;
@@ -257,7 +272,7 @@ footer p {
   margin-bottom: var(--spacing-medium);
 }
 
-.content-card h3:first-child {
+.card-title:first-child {
   margin-top: 0;
 }
 
@@ -515,54 +530,6 @@ aside {
   background-color: #f7b78f !important;
 }
 
-/* 기물 위치 (King, Queen 등) */
-.king,
-.queen,
-.rook,
-.bishop,
-.knight,
-.pawn {
-  /* 기물 위치는 빨간색이 아닌, 테마 색상 기반의 색상으로 변경 */
-  background-color: var(--color-primary) !important;
-  color: white;
-}
-.king::after,
-.queen::after,
-.rook::after,
-.bishop::after,
-.knight::after,
-.pawn::after {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  line-height: normal; /* flex 중앙 정렬 사용으로 line-height 무시 */
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.king::after {
-  content: "♔";
-}
-.queen::after {
-  content: "♕";
-}
-.rook::after {
-  content: "♖";
-}
-.bishop::after {
-  content: "♗";
-}
-.knight::after {
-  content: "♘";
-}
-.pawn::after {
-  content: "♙";
-}
-
 /* 다이어그램을 텍스트 옆에 배치 (Flexbox로 전환) */
 @media (min-width: 900px) {
   .piece-detail-container {
@@ -617,7 +584,7 @@ aside {
   }
 }
 
-/* 5.1 사이드바 (Aside) */
+/* 5.1 아티클 사이드바 (Aside) */
 #article-sidebar {
   /* 사이드바 기본 배경색 변경 (흰색 대신 연한 배경) */
   background-color: var(--color-background);
@@ -688,6 +655,25 @@ aside {
 
 .article-body-area {
   flex-grow: 1;
+}
+
+/* 5.6 다이어그램과 텍스트 그룹 (체크, 더블체크) */
+.article-detail-group {
+  display: flex;
+  flex-direction: column; /* 모바일 우선 */
+  gap: var(--spacing-medium);
+  margin-bottom: var(--spacing-large);
+}
+@media (min-width: 900px) {
+  .article-detail-group {
+    flex-direction: row;
+    align-items: flex-start; /* 상단 정렬 */
+    gap: var(--spacing-large);
+  }
+  .article-diagram {
+    /* 다이어그램을 오른쪽으로 밀착 */
+    margin-left: auto;
+  }
 }
 
 /* 긴 글 (Long Text) */
@@ -852,4 +838,205 @@ textarea.input-style {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
+}
+
+/* ****************************************************** */
+/* 7. 체스 다이어그램 및 기타 유틸리티 (ETC) */
+/* ****************************************************** */
+
+/* --- 체스 움직임 다이어그램 스타일링 (갤러리 및 아티클 공통) --- */
+.chess-diagram-container {
+  text-align: center;
+  padding: var(--spacing-medium) 0;
+}
+
+.diagram-title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-medium);
+  color: var(--color-primary-dark);
+}
+
+.chess-diagram {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 256px; /* 8칸 * 32px/칸 */
+  height: 256px;
+  margin: auto;
+  border: 3px solid var(--color-primary-dark);
+}
+
+.square {
+  width: 100%;
+  height: 100%;
+  /* 밝은 칸과 어두운 칸의 색상 교차는 패턴으로 설정됨 */
+  background-color: var(--board-color-dark);
+  position: relative; /* ::after 요소를 위해 필요 */
+}
+
+/* 체스판 색상 패턴 설정 (밝은 칸) */
+.square:nth-child(16n),
+.square:nth-child(16n-2),
+.square:nth-child(16n-4),
+.square:nth-child(16n-6),
+.square:nth-child(16n-9),
+.square:nth-child(16n-11),
+.square:nth-child(16n-13),
+.square:nth-child(16n-15) {
+  background-color: var(--board-color-light);
+}
+
+/* ---------------------------------------------------- */
+/* 이동 가능 위치 (Move) - 점과 X 표시 로직 */
+/* ---------------------------------------------------- */
+
+/* 1. 이동 가능 위치 (Dot) */
+.move::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary); /* 테마 색상으로 점 찍기 */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+}
+
+/* 2. 폰의 공격 위치 (Capture) - X 표시 */
+.capture::after {
+  content: "×"; /* X 표시 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f00; /* 공격을 나타내는 빨간색 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.king::after,
+.queen::after,
+.rook::after,
+.bishop::after,
+.knight::after,
+.pawn::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-image: var(--chess-svg);
+  background-size: 192px 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 2. 기물별 위치 설정 (background-position) */
+/* White Pieces (윗줄, Y축 0px) */
+/* White Pieces (윗줄, Y축 0px) */
+.white.king::after {
+  background-position: 0 0;
+}
+.white.queen::after {
+  background-position: -32px 0;
+}
+.white.bishop::after {
+  background-position: -64px 0;
+}
+.white.knight::after {
+  background-position: -96px 0;
+}
+.white.rook::after {
+  background-position: -128px 0;
+}
+.white.pawn::after {
+  background-position: -160px 0;
+} /* 160px = 5 * 32px */
+
+/* Black Pieces (아랫줄, Y축 -64px -> -32px) */
+.black.king::after {
+  background-position: 0 -32px;
+}
+.black.queen::after {
+  background-position: -32px -32px;
+}
+.black.bishop::after {
+  background-position: -64px -32px;
+}
+.black.knight::after {
+  background-position: -96px -32px;
+}
+.black.rook::after {
+  background-position: -128px -32px;
+}
+.black.pawn::after {
+  background-position: -160px -32px;
+}
+
+/* 킹 체크 상태 강조 */
+.king-in-check {
+  position: relative;
+}
+
+/* 이동 경로 색상 */
+.moved-square {
+  /* 기본값: 어두운 칸에 적용될 색상을 기본으로 설정 */
+  background-color: var(--moved-color-dark) !important;
+}
+
+/* 밝은 칸에 위치할 때 */
+.square:nth-child(16n).moved-square,
+.square:nth-child(16n-2).moved-square,
+.square:nth-child(16n-4).moved-square,
+.square:nth-child(16n-6).moved-square,
+.square:nth-child(16n-9).moved-square,
+.square:nth-child(16n-11).moved-square,
+.square:nth-child(16n-13).moved-square,
+.square:nth-child(16n-15).moved-square {
+  background-color: var(--moved-color-light) !important;
+}
+
+/* 어두운 칸에 체크 오버레이 적용 */
+.square:not(:nth-child(16n)):not(:nth-child(16n-2)):not(:nth-child(16n-4)):not(
+    :nth-child(16n-6)
+  ):not(:nth-child(16n-9)):not(:nth-child(16n-11)):not(:nth-child(16n-13)):not(
+    :nth-child(16n-15)
+  ).king-in-check::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--check-dark-color); /* 어두운 칸용 경고색 */
+}
+
+/* 밝은 칸에 체크 오버레이 적용 */
+.square:nth-child(16n).king-in-check::before,
+.square:nth-child(16n-2).king-in-check::before,
+.square:nth-child(16n-4).king-in-check::before,
+.square:nth-child(16n-6).king-in-check::before,
+.square:nth-child(16n-9).king-in-check::before,
+.square:nth-child(16n-11).king-in-check::before,
+.square:nth-child(16n-13).king-in-check::before,
+.square:nth-child(16n-15).king-in-check::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--check-light-color); /* 밝은 칸용 경고색 */
 }

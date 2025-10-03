@@ -44,6 +44,7 @@
             <h3 class="section-title-sidebar">목차 (Contents)</h3>
 
             <div class="sidebar-content">
+              <!-- 규칙 그룹 -->
               <div class="sidebar-group">
                 <div class="sidebar-group-header">규칙 (Basic Rules)</div>
                 <ul class="sub-selection-list">
@@ -89,15 +90,41 @@
                   </li>
                 </ul>
               </div>
+
+              <!-- 전술 그룹 -->
               <div class="sidebar-group">
-                <div class="sidebar-group-header">전략 (Strategy)</div>
+                <div class="sidebar-group-header">전술 (Tactics)</div>
                 <ul class="sub-selection-list">
                   <li>
                     <a
-                      href="#piece-value"
+                      href="#fork"
                       class="selection-item"
-                      onclick="showArticle('piece-value', this); return false"
-                      >말의 상대적 가치</a
+                      onclick="showArticle('fork', this); return false;"
+                      >포크 (Fork)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#pin"
+                      class="selection-item"
+                      onclick="showArticle('pin', this); return false;"
+                      >핀 (Pin)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#skewer"
+                      class="selection-item"
+                      onclick="showArticle('skewer', this); return false;"
+                      >스큐어 (Skewer)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#gambit"
+                      class="selection-item"
+                      onclick="showArticle('gambit', this); return false;"
+                      >겜빗 (Gambit)</a
                     >
                   </li>
                   <li>
@@ -106,6 +133,21 @@
                       class="selection-item"
                       onclick="showArticle('sacrifice', this); return false"
                       >희생 (Sacrifice)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 전략 그룹 -->
+              <div class="sidebar-group">
+                <div class="sidebar-group-header">전략 (Strategy)</div>
+                <ul class="sub-selection-list">
+                  <li>
+                    <a
+                      href="#piece-value"
+                      class="selection-item"
+                      onclick="showArticle('piece-value', this); return false"
+                      >기물의 상대적 가치</a
                     >
                   </li>
                   <li>
@@ -133,73 +175,1099 @@
           <div class="article-body-area">
             <h2 class="section-title">체스의 심층 규칙 및 고급 전략</h2>
 
+            <!-- 규칙 그룹 -->
+            <!-- 1. 체크와 체크메이트 -->
             <div class="content-card" id="check">
               <h3 class="card-title">1. 체크와 체크메이트</h3>
-              <p class="long-text">
-                체스 게임의 궁극적인 목표는 상대방의 킹을 잡을 수 있는 상태, 즉
-                <strong>체크(Check)</strong> 상태로 만들고 상대가 그 체크를 피할
-                수 없게 만드는 <strong>체크메이트(Checkmate)</strong>를 달성하는
-                것입니다. 체크를 당했을 때 플레이어는 반드시 킹을 이동시키거나,
-                체크를 가하는 말을 막거나, 해당 말을 잡아서 체크 상태를 벗어나야
-                합니다. 만약 세 가지 방법 모두 불가능하다면, 즉시 패배하게
-                됩니다.
-              </p>
+
+              <!-- 체크 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">
+                    체크(Check)의 정의와 대처 방법
+                  </h4>
+
+                  <p class="long-text">
+                    <strong>체크(Check)</strong>란 상대방의 킹이 현재 공격받는
+                    상태를 의미합니다. 체크를 당했을 때 플레이어는 반드시 다음
+                    세 가지 방법 중 한 가지로 체크 상태를 즉시 벗어나야 합니다.
+                  </p>
+
+                  <div class="piece-detail-container">
+                    <ul>
+                      <li>
+                        <strong>킹 이동</strong> 킹을 공격받지 않는 안전한
+                        칸으로 이동시킵니다.
+                      </li>
+                      <li>
+                        <strong>체크 막기</strong> 킹과 체크 기물 사이에 다른
+                        기물을 놓아 공격 경로를 차단합니다 (나이트나 폰으로
+                        체크당했을 때는 불가능).
+                      </li>
+                      <li>
+                        <strong>체크 기물 잡기</strong> 체크를 가하는 상대
+                        기물을 잡습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- 체크 다이어그램 -->
+                <div
+                  class="chess-diagram-container"
+                  aria-label="체스 다이어그램: 일반 체크 예시. 
+백팀 퀸이 b8에 위치하며 흑팀 킹(e8)을 공격하여 체크 상태입니다. 
+흑팀은 킹을 안전한 칸으로 이동하거나 체크를 막는 수를 두어야 합니다. 
+주변의 폰과 기물들이 포지션을 복잡하게 만들고 있습니다."
+                >
+                  <p class="diagram-title">예시: 일반 체크</p>
+                  <div class="chess-diagram check-example">
+                    <!-- 다이어그램 내용: 룩이 킹을 체크하는 상황 -->
+                    <div class="square"></div>
+                    <div class="square moved-square white queen"></div>
+                    <div class="square"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black king king-in-check"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square"></div>
+                    <div class="square black rook"></div>
+
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black knight"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black queen"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white king"></div>
+                    <div class="square white rook"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 더블 체크 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">더블 체크 (Double Check)</h4>
+                  <p class="long-text">
+                    더블 체크는 상대방의
+                    <strong>두 기물이 동시에 킹을 공격</strong>하는 상황입니다.
+                    이 경우 킹은 두 가지 공격 모두를 막아야 하므로, 세 가지 대처
+                    방법 중 <strong>킹을 이동시키는 방법</strong> 외에는 다른
+                    수를 둘 수 없습니다. 더블 체크는 체크메이트를 유도하는
+                    강력한 전술적 요소로 사용됩니다.
+                  </p>
+                </div>
+
+                <!-- 더블 체크 다이어그램 -->
+                <div
+                  class="chess-diagram-container"
+                  aria-label="체스 다이어그램: 더블 체크 예시. 
+흑팀 킹이 d8에 위치하며 백팀의 퀸(d4)과 룩(a8)에게 동시에 공격받는 상황을 표시함. 
+공격은 퀸(d4)과 나이트(e6)에게 가려진 룩(a8)에 의해 발견된 공격입니다. 
+흑팀 킹은 d7로 이동하여 체크를 피해야 합니다."
+                >
+                  <p class="diagram-title">예시: 더블 체크</p>
+                  <div class="chess-diagram double-check-example">
+                    <!-- 다이어그램 내용: 퀸과 룩이 동시에 킹을 체크하는 상황 -->
+                    <div class="square black rook"></div>
+                    <div class="square black knight"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square black king king-in-check"></div>
+                    <div class="square move"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square"></div>
+                    <div class="square black rook"></div>
+
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square move"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black queen"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square white bishop"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black knight"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white king"></div>
+                    <div class="square white rook"></div>
+                    <div class="square"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square white knight"></div>
+                    <div class="square white rook"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 체크메이트 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">
+                    체크메이트(Checkmate)와 승리 조건
+                  </h4>
+                  <p class="long-text">
+                    <strong>체크메이트(Checkmate)</strong>란 상대방의 킹이
+                    공격받는 상태(체크)이며, 위에 제시된 세 가지 대처 방법 모두
+                    불가능할 때 발생합니다. 체크메이트가 선언되는 즉시 경기는
+                    종료되며, 체크메이트를 건 플레이어가 승리합니다. 킹은 잡히는
+                    기물이 아니며, 체크메이트 상태가 되면 경기가 끝납니다.
+                  </p>
+                </div>
+
+                <!-- 체크메이트 다이어그램 -->
+                <div
+                  class="chess-diagram-container"
+                  aria-label="킹이 룩에 공격을 받고 있는 상황"
+                >
+                  <div
+                    class="chess-diagram-container"
+                    aria-label="체스 다이어그램: 체크메이트 예시 포지션. 
+흑팀 킹이 c7에 위치하며 백팀 비숍(d8)에게 직접 체크를 당하고 있습니다. 
+흑킹은 도망칠 수 있는 d6, b6 칸과 비숍을 막을 수 있는 모든 칸이 다른 기물들에 의해 막혀 있어 체크메이트 상태입니다. 
+경기는 백팀의 승리로 종료됩니다."
+                  >
+                    <p class="diagram-title">예시: 체크메이트</p>
+
+                    <div class="chess-diagram double-check-example">
+                      <!-- 다이어그램 내용: 퀸과 룩이 동시에 킹을 체크하는 상황 -->
+                      <div class="square black rook"></div>
+                      <div class="square black knight"></div>
+                      <div class="square black bishop"></div>
+                      <div class="square moved-square white bishop"></div>
+                      <div class="square"></div>
+                      <div class="square black bishop"></div>
+                      <div class="square"></div>
+                      <div class="square black rook"></div>
+
+                      <div class="square black pawn"></div>
+                      <div class="square black pawn"></div>
+                      <div class="square black king king-in-check"></div>
+                      <div class="square king-in-check"></div>
+                      <div class="square"></div>
+                      <div class="square black pawn"></div>
+                      <div class="square black pawn"></div>
+                      <div class="square black pawn"></div>
+
+                      <div class="square"></div>
+                      <div class="square king-in-check"></div>
+                      <div class="square black pawn"></div>
+                      <div class="square king-in-check"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square black queen"></div>
+                      <div class="square"></div>
+                      <div class="square moved-square"></div>
+                      <div class="square"></div>
+
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square black knight"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+
+                      <div class="square white pawn"></div>
+                      <div class="square white pawn"></div>
+                      <div class="square white pawn"></div>
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square white pawn"></div>
+                      <div class="square white pawn"></div>
+                      <div class="square white pawn"></div>
+
+                      <div class="square"></div>
+                      <div class="square"></div>
+                      <div class="square white king"></div>
+                      <div class="square white rook"></div>
+                      <div class="square"></div>
+                      <div class="square white bishop"></div>
+                      <div class="square white knight"></div>
+                      <div class="square white rook"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
+            <!-- 2. 스테일메이트 -->
             <div class="content-card hidden" id="stalemate">
               <h3 class="card-title">2. 스테일메이트 (Stalemate)</h3>
-              <p class="long-text">
-                스테일메이트는 게임이 무승부로 끝나는 특별한 상황입니다. 자신의
-                킹이 체크 상태는 아니지만, 합법적으로 둘 수 있는 수가 전혀
-                남아있지 않을 때 발생합니다. 이는 초보자들이 간과하기 쉬운
-                규칙이며, 불리한 상황에서 무승부를 이끌어내기 위한 고급 전략이
-                되기도 합니다.
-              </p>
-            </div>
 
-            <div class="content-card hidden" id="castling">
-              <h3 class="card-title">3. 캐슬링 (Castling)</h3>
-              <p class="long-text">
-                캐슬링은 체스에서 유일하게 두 기물(킹과 룩)이 동시에 움직이는
-                특별한 수입니다. 킹을 안전하게 지키고 룩을 중앙으로 활성화하기
-                위해 사용됩니다. 캐슬링은 킹이 움직인 적이 없고, 룩이 움직인
-                적이 없으며, 킹과 룩 사이에 아무 기물도 없어야 하고, 킹이
-                지나가는 경로가 상대방에게 공격당해서는 안 됩니다.
-              </p>
+              <!-- 스테일메이트 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">
+                    스테일메이트의 정의와 무승부 조건
+                  </h4>
 
-              <!-- 인용 (Blockquote) 요구사항 충족 -->
-              <h4 class="sub-title">체스 명언 인용</h4>
+                  <p class="long-text">
+                    <strong>스테일메이트(Stalemate)</strong>는 체스에서 게임이
+                    <b>무승부(Draw)</b>로 끝나는 매우 중요한 규칙입니다. 이
+                    상황은 다음 두 가지 조건이 모두 충족될 때 발생합니다.
+                  </p>
+
+                  <div class="piece-detail-container">
+                    <ul>
+                      <li>
+                        <strong>킹이 체크 상태가 아님</strong> 자신의 킹이
+                        상대방 기물에게 직접 공격받고 있지 않아야 합니다.
+                      </li>
+                      <li>
+                        <strong>합법적인 수 없음</strong> 현재 수를 둘 차례인
+                        플레이어가 킹을 포함하여 합법적으로 둘 수 있는
+                        기물(Pawn, Knight 등)의 움직임이 전혀 남아있지 않아야
+                        합니다.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <p class="long-text">
+                    이 상황은 초보자들이 간과하기 쉬운 규칙이며, 불리한 상황에서
+                    패배 대신 무승부를 이끌어내기 위한
+                    <b>고급 전략</b>으로 활용되기도 합니다. 특히
+                    엔드게임(Endgame)에서 킹과 폰의 싸움에서 자주 발생합니다.
+                  </p>
+                </div>
+
+                <!-- 스테일메이트 다이어그램 -->
+                <div class="chess-diagram-container article-diagram">
+                  <p class="diagram-title">예시: 스테일메이트</p>
+                  <div class="chess-diagram stalemate-example">
+                    <!-- 흑킹이 공격받지 않지만 갈 곳 없는 포지션 -->
+                    <div class="square king-in-check"></div>
+                    <div class="square black king"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square king-in-check"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square white king"></div>
+                    <div class="square moved-square white queen"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 명언 인용 -->
+              <h4 class="section-sub-title">체스 명언 인용</h4>
               <blockquote>
-                "The beauty of a move lies not in its form but in the thought
-                behind it."
-                <footer class="blockquote-footer">
-                  — Aaron Nimzowitsch, 덴마크-러시아의 그랜드마스터
-                </footer>
+                "The most dangerous pieces are the ones you don't see."
+                <footer class="blockquote-footer">— The Chess Master</footer>
               </blockquote>
             </div>
 
-            <div class="content-card hidden" id="en-passant">
-              <h3 class="card-title">4. 앙파상 (En Passant) 및 프로모션</h3>
-              <p class="long-text" id="en-passant-anchor">
-                앙파상은 프랑스어로 '지나가는 중에'라는 뜻으로, 폰이 두 칸
-                전진했을 때 상대 폰이 그 폰을 즉시 대각선으로 잡을 수 있는
-                특별한 규칙입니다. 이는 상대 폰의 빠른 전진을 응징하기 위한
-                규칙이며, 앙파상 기회는 <strong>딱 한 수</strong>만 주어집니다.
-              </p>
-            </div>
-            <div class="content-card hidden" id="promotion">
-              <h3 class="card-title">5. 프로모션 (Promotion)</h3>
-              <p class="long-text">
-                프로모션은 폰이 상대방 진영의 맨 끝 줄에 도달했을 때 퀸, 룩,
-                비숍, 나이트 중 하나로 승진하는 규칙입니다. 보통 가장 강력한
-                퀸으로 승진하며, 이를
-                <strong>언더프로모션(Underpromotion)</strong> 전략과 연결하여
-                생각할 수 있습니다.
-              </p>
+            <!-- 3. 캐슬링 -->
+            <div class="content-card hidden" id="castling">
+              <h3 class="card-title">3. 캐슬링 (Castling)</h3>
+
+              <!-- 캐슬링 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">캐슬링</h4>
+                  <p class="long-text">
+                    캐슬링은 체스에서 유일하게 두 기물(킹과 룩)이 동시에
+                    움직이는 특별한 수입니다.
+                  </p>
+                  <p class="long-text">
+                    킹의 안전을 확보하고 룩을 중앙으로 활성화하기 위해
+                    사용됩니다.
+                  </p>
+                </div>
+
+                <!-- 캐슬링 예시 다이어그램 그룹 -->
+                <div class="article-detail-group">
+                  <!-- 킹사이드 캐슬링 -->
+                  <div>
+                    <div class="chess-diagram-container article-diagram">
+                      <p class="diagram-title">킹사이드 캐슬링 후 포지션</p>
+                      <div class="chess-diagram king-side-castling-example">
+                        <!-- 캐슬링 후 포지션 -->
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square white rook"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square"></div>
+                        <div class="square moved-square"></div>
+                        <div class="square white rook"></div>
+                        <div class="square moved-square white king"></div>
+                        <div class="square"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 퀸사이드 캐슬링 -->
+                  <div>
+                    <div class="piece-detail-container">
+                      <div class="chess-diagram-container article-diagram">
+                        <p class="diagram-title">퀸사이드 캐슬링 후 포지션</p>
+                        <div class="chess-diagram queen-side-castling-example">
+                          <!-- 퀸사이드 캐슬링 후 포지션 -->
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square moved-square white king"></div>
+                          <div class="square white rook"></div>
+                          <div class="square moved-square"></div>
+                          <div class="square"></div>
+                          <div class="square"></div>
+                          <div class="square white rook"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 캐슬링 조건 -->
+              <div>
+                <h4 class="section-sub-title">캐슬링 발동 조건</h4>
+                <p class="long-text">
+                  캐슬링은 다음의 엄격한 <strong>발동 조건</strong>이 있습니다
+                </p>
+
+                <div class="piece-detail-container">
+                  <ul>
+                    <li>
+                      <strong>이동 기록</strong>킹과 해당 룩이 게임 시작 후
+                      <b>한 번도 움직이지 않았어야</b> 합니다.
+                    </li>
+                    <li>
+                      <strong>경로 확보</strong>킹과 룩 사이에 다른 기물이
+                      없어야 합니다.
+                    </li>
+                    <li>
+                      <strong>안전 조건</strong>킹이 체크 상태여서는 안 되며,
+                      캐슬링 경로(킹이 지나가는 두 칸)가 상대방에게 공격당해서도
+                      안 됩니다.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 인용문 -->
+              <div>
+                <h4 class="section-sub-title">체스 명언 인용</h4>
+                <blockquote>
+                  "The beauty of a move lies not in its form but in the thought
+                  behind it."
+                  <footer class="blockquote-footer">
+                    — Aaron Nimzowitsch, 덴마크-러시아의 그랜드마스터
+                  </footer>
+                </blockquote>
+              </div>
             </div>
 
+            <!-- 4. 앙파상 -->
+            <div class="content-card hidden" id="en-passant">
+              <h3 class="card-title">4. 앙파상 (En Passant)</h3>
+
+              <!-- 앙파상 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">앙파상 (En Passant)</h4>
+                  <p class="long-text">
+                    앙파상은 프랑스어로 '지나가는 중에'라는 뜻으로, 폰이 두 칸
+                    전진했을 때 상대 폰이 그 폰을 즉시 대각선으로 잡을 수 있는
+                    특별한 규칙입니다. 이 규칙은 상대 폰의 빠른 전진을 응징하기
+                    위해 만들어졌습니다.
+                  </p>
+
+                  <!-- 앙파상 발동 조건 -->
+                  <h4 class="section-sub-title">앙파상 발동 조건</h4>
+                  <div class="piece-detail-container">
+                    <ul>
+                      <li>
+                        <strong>폰의 위치</strong> 공격하는 폰이 반드시
+                        <b>5번째 랭크(백팀 5행, 흑팀 4행)</b>에 있어야 합니다.
+                      </li>
+                      <li>
+                        <strong>상대 폰의 이동</strong> 상대 폰이 처음 위치에서
+                        <b>정확히 두 칸 전진</b>하여 공격하는 폰과 같은 랭크에
+                        나란히 도착해야 합니다.
+                      </li>
+                      <li>
+                        <strong>기회 제한</strong> 앙파상 기회는 상대 폰이 두 칸
+                        전진한 <b>바로 다음 한 수</b>에만 주어집니다. 이후에는
+                        기회가 사라집니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- 앙파상 다이어그램 -->
+                <div class="chess-diagram-container article-diagram">
+                  <p class="diagram-title">예시: 앙파상</p>
+                  <div class="chess-diagram en-passant-example">
+                    <!-- 앙파상 포지션 다이어그램 -->
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+
+                    <div class="square white rook"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square black king"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square white pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square capture"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white rook"></div>
+                    <div class="square white pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white king"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. 프로모션 -->
+            <div class="content-card hidden" id="promotion">
+              <h3 class="card-title">5. 프로모션 (Promotion)</h3>
+
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">프로모션의 정의와 승진 기물</h4>
+                  <p class="long-text">
+                    <strong>프로모션(Promotion)</strong>은 폰이
+                    <b>상대방 진영의 맨 끝 줄</b>에 도달했을 때 퀸, 룩, 비숍,
+                    나이트 중 하나로 승진하는 규칙입니다. 폰은 가장 약한
+                    기물이지만, 이 규칙 덕분에 게임에서 가장 강력한 기물이 될 수
+                    있는 잠재력을 가집니다.
+                  </p>
+
+                  <h4 class="section-sub-title">
+                    언더프로모션 (Underpromotion)
+                  </h4>
+                  <p class="long-text">
+                    보통 가장 강력한 <strong>퀸</strong>으로 승진하지만, 특수한
+                    상황에서는 <b>퀸 대신</b> 룩, 비숍, 나이트로 승진하는 것을
+                    <b>언더프로모션(Underpromotion)</b>이라고 합니다. 이는 주로
+                    <strong>나이트의 포크</strong>와 같은 전술적 이득을 얻거나,
+                    <b>스테일메이트(무승부)</b>를 방지하기 위한 목적으로
+                    사용되는 고도의 전략입니다.
+                  </p>
+                </div>
+
+                <!-- 프로모션 다이어그램 -->
+                <div class="chess-diagram-container article-diagram">
+                  <p class="diagram-title">
+                    예시: 프로모션<br />(언더프로모션 체크메이트)
+                  </p>
+                  <div class="chess-diagram promotion-example">
+                    <!-- 폰이 승진하는 상황 -->
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square white knight"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square king-in-check"></div>
+
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black king king-in-check"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white queen"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black queen"></div>
+                    <div class="square black bishop"></div>
+
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square white pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square white rook"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white rook"></div>
+                    <div class="square white king"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 전술 그룹 -->
+            <!-- 6. 포크 -->
+            <div class="content-card hidden" id="fork">
+              <h3 class="card-title">6. 전술: 포크 (Fork)</h3>
+
+              <!-- 포크 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">포크 (Fork)</h4>
+                  <!-- TODO: 포크 설명 -->
+                </div>
+
+                <!-- 포크 다이어그램 -->
+                <div class="chess-diagram-container">
+                  <p class="diagram-title">예시: 포크</p>
+                  <div class="chess-diagram fork-example">
+                    <!-- TODO: 포크 예시 다이어그램 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. 핀 -->
+            <div class="content-card hidden" id="pin">
+              <h3 class="card-title">7. 전술: 핀 (Pin)</h3>
+
+              <!-- 핀 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">핀 (Pin)</h4>
+                  <!-- TODO: 핀 설명 -->
+                </div>
+
+                <!-- 핀 다이어그램 -->
+                <div class="chess-diagram-container">
+                  <p class="diagram-title">예시: 핀</p>
+                  <div class="chess-diagram pin-example">
+                    <!-- TODO: 핀 예시 다이어그램 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. 스큐어 -->
+            <div class="content-card hidden" id="skewer">
+              <h3 class="card-title">8. 전술: 스큐어 (Skewer)</h3>
+
+              <!-- 스큐어 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">스큐어 (Skewer)</h4>
+                  <!-- TODO: 스큐어 설명 -->
+                </div>
+
+                <!-- 스큐어 다이어그램 -->
+                <div class="chess-diagram-container">
+                  <p class="diagram-title">예시: 스큐어</p>
+                  <div class="chess-diagram skewer-example">
+                    <!-- TODO: 스큐어 예시 다이어그램 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. 겜빗 -->
+            <div class="content-card hidden" id="gambit">
+              <h3 class="card-title">9. 전술: 겜빗 (Gambit)</h3>
+
+              <!-- 겜빗 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">겜빗 (Gambit)</h4>
+                  <p class="long-text">
+                    겜빗은 체스 오프닝(초반 수순)에서 포지션상의 우위나 빠른
+                    기물 전개를 위해 <b>자신의 기물(주로 폰)</b>을 의도적으로
+                    희생하는 전략입니다. 겜빗을 통해 얻는 시간이나 중앙 통제권은
+                    희생된 기물의 가치보다 더 클 수 있습니다. 가장 유명한
+                    겜빗으로는 '킹즈 겜빗(King's Gambit)'이나 '퀸즈 겜빗(Queen's
+                    Gambit)'이 있습니다.
+                  </p>
+                </div>
+
+                <!-- 겜빗 다이어그램 -->
+                <div class="chess-diagram-container">
+                  <p class="diagram-title">예시: 겜빗</p>
+                  <div class="chess-diagram gambit-example">
+                    <!-- TODO: 겜빗 예시 다이어그램 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10. 희생 -->
+            <div class="content-card hidden" id="sacrifice">
+              <h3 class="card-title">7. 전술: 희생 (Sacrifice)</h3>
+
+              <!-- 희생 -->
+              <div class="article-detail-group">
+                <div>
+                  <h4 class="section-sub-title">희생 (Sacrifice)</h4>
+                  <p class="long-text">
+                    희생(Sacrifice)은 체스에서 상대방에게 의도적으로 기물을
+                    내어주는 행위입니다. 이는 단순한 실수처럼 보일 수 있지만, 더
+                    큰 목표(예: 체크메이트 공격 경로 확보, 강력한 포지셔널 우위,
+                    상대방의 수비 혼란)를 달성하기 위해 사용되는 고급
+                    전략입니다.
+                  </p>
+                </div>
+
+                <!-- 희생 다이어그램 -->
+                <div class="chess-diagram-container">
+                  <p class="diagram-title">예시: 희생</p>
+                  <div class="chess-diagram sacrifice-example">
+                    <!-- 다이어그램 내용: 퀸과 룩이 동시에 킹을 체크하는 상황 -->
+                    <div class="square black rook"></div>
+                    <div class="square black knight"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square moved-square white queen"></div>
+                    <div class="square black king king-in-check"></div>
+                    <div class="square black bishop"></div>
+                    <div class="square"></div>
+                    <div class="square black rook"></div>
+
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square king-in-check"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square black pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black pawn"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black queen"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square black knight"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square moved-square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square"></div>
+
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+                    <div class="square white pawn"></div>
+
+                    <div class="square"></div>
+                    <div class="square"></div>
+                    <div class="square white king"></div>
+                    <div class="square white rook"></div>
+                    <div class="square"></div>
+                    <div class="square white bishop"></div>
+                    <div class="square white knight"></div>
+                    <div class="square white rook"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 전략 그룹 -->
+            <!-- 11. 기물의 상대적 가치-->
             <div class="content-card hidden" id="piece-value">
-              <h3 class="card-title">6. 전략: 말의 상대적 가치</h3>
+              <h3 class="card-title">11. 전략: 기물의 상대적 가치</h3>
               <!-- 표 (Table) 요구사항 충족 -->
               <h4 class="sub-title">말의 상대적 가치 비교표</h4>
               <table class="data-table">
@@ -245,13 +1313,27 @@
               </table>
             </div>
 
-            <div class="content-card hidden" id="sacrifice">
-              <h3 class="card-title">7. 전략: 희생 (Sacrifice)</h3>
+            <!-- 12. 언더프로모션 -->
+            <div class="content-card hidden" id="underpromotion">
+              <h3 class="card-title">
+                12. 전략: 언더프로모션 (Underpromotion)
+              </h3>
               <p class="long-text">
-                희생(Sacrifice)은 체스에서 상대방에게 의도적으로 기물을 내어주는
-                행위입니다. 이는 단순한 실수처럼 보일 수 있지만, 더 큰 목표(예:
-                체크메이트 공격 경로 확보, 강력한 포지셔널 우위, 상대방의 수비
-                혼란)를 달성하기 위해 사용되는 고급 전략입니다.
+                폰이 승진할 때 퀸 대신 룩, 비숍, 나이트로 승진하는 것을
+                언더프로모션이라고 합니다. 퀸이 가장 강력하지만, 나이트로
+                언더프로모션하는 경우처럼 나이트의 독특한 움직임(특히 포크)이
+                필요한 상황에서 전략적으로 사용됩니다.
+              </p>
+            </div>
+
+            <!-- 13. 역사적인 명국 -->
+            <div class="content-card hidden" id="historical-game">
+              <h3 class="card-title">13. 역사적 명국 (Historical Game)</h3>
+              <p class="long-text">
+                체스의 역사는 수많은 명국으로 채워져 있습니다. "불멸의
+                게임(Immortal Game)"이나 "오페라 게임(Opera Game)"과 같은 경기는
+                단순한 경기를 넘어 예술 작품으로 평가받습니다. 이 경기들을
+                분석하는 것은 전략적 사고를 기르는 데 필수적입니다.
               </p>
 
               <!-- Figure (그림/다이어그램) 요구사항 충족 -->
@@ -262,26 +1344,6 @@
                   역사적인 포지션 다이어그램: 퀸 희생을 통한 체크메이트 기회.
                 </figcaption>
               </figure>
-            </div>
-
-            <div class="content-card hidden" id="underpromotion">
-              <h3 class="card-title">8. 전략: 언더프로모션 (Underpromotion)</h3>
-              <p class="long-text">
-                폰이 승진할 때 퀸 대신 룩, 비숍, 나이트로 승진하는 것을
-                언더프로모션이라고 합니다. 퀸이 가장 강력하지만, 나이트로
-                언더프로모션하는 경우처럼 나이트의 독특한 움직임(특히 포크)이
-                필요한 상황에서 전략적으로 사용됩니다.
-              </p>
-            </div>
-
-            <div class="content-card hidden" id="historical-game">
-              <h3 class="card-title">9. 역사적 명국 (Historical Game)</h3>
-              <p class="long-text">
-                체스의 역사는 수많은 명국으로 채워져 있습니다. "불멸의
-                게임(Immortal Game)"이나 "오페라 게임(Opera Game)"과 같은 경기는
-                단순한 경기를 넘어 예술 작품으로 평가받습니다. 이 경기들을
-                분석하는 것은 전략적 사고를 기르는 데 필수적입니다.
-              </p>
             </div>
           </div>
         </div>
