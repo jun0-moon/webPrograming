@@ -79,6 +79,13 @@ a:hover {
   text-decoration: underline;
 }
 
+pre {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  margin-top: var(--spacing-tiny);
+  font-size: 0.9rem;
+}
+
 /* --- [추가됨: 동적 콘텐츠 제어를 위한 필수 클래스] --- */
 .hidden {
   display: none !important;
@@ -447,88 +454,9 @@ aside {
   display: none;
 }
 
-/* --- 체스 움직임 다이어그램 스타일링 --- */
-.chess-diagram-container {
-  text-align: center;
-  padding: var(--spacing-medium) 0;
-}
-
-.diagram-title {
-  font-weight: 600;
-  margin-bottom: var(--spacing-medium);
-  color: var(--color-primary-dark);
-}
-
-.chess-diagram {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  width: 256px; /* 8칸 * 32px/칸 */
-  height: 256px;
-  margin: auto;
-  border: 3px solid var(--color-primary-dark);
-}
-
-.square {
-  width: 100%;
-  height: 100%;
-  /* 밝은 칸과 어두운 칸의 색상 교차는 패턴으로 설정됨 */
-  background-color: var(--board-color-light);
-  position: relative; /* ::after 요소를 위해 필요 */
-}
-
-/* 체스판 색상 패턴 설정 (어두운 칸) */
-.square:nth-child(16n),
-.square:nth-child(16n-2),
-.square:nth-child(16n-4),
-.square:nth-child(16n-6),
-.square:nth-child(16n-9),
-.square:nth-child(16n-11),
-.square:nth-child(16n-13),
-.square:nth-child(16n-15) {
-  background-color: var(--board-color-dark);
-}
-
 /* ---------------------------------------------------- */
 /* 이동 가능 위치 (Move) - 점과 X 표시 로직 */
 /* ---------------------------------------------------- */
-
-/* 1. 이동 가능 위치 (Dot) */
-.move::after {
-  content: "";
-  display: block;
-  width: 12px;
-  height: 12px;
-  background-color: var(--color-primary); /* 테마 색상으로 점 찍기 */
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.7;
-}
-
-/* 2. 폰의 공격 위치 (Capture) - X 표시 */
-.capture::after {
-  content: "×"; /* X 표시 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  font-weight: 700;
-  color: #f00; /* 공격을 나타내는 빨간색 */
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* 시작 위치 (Start) */
-.start {
-  /* 기물 주변의 시작 위치는 연한 배경으로 유지 */
-  background-color: #f7b78f !important;
-}
 
 /* 다이어그램을 텍스트 옆에 배치 (Flexbox로 전환) */
 @media (min-width: 900px) {
@@ -701,8 +629,20 @@ aside {
   text-align: left;
 }
 .data-table th {
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   font-weight: 600;
+  color: white;
+}
+.caption-top {
+  caption-side: top; /* 캡션을 표의 위에 위치 */
+  text-align: left; /* 캡션을 왼쪽 정렬 */
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-small);
+}
+.data-table tbody th {
+  background-color: var(--color-accent-soft);
   color: var(--color-primary-dark);
 }
 
@@ -797,7 +737,8 @@ textarea.input-style {
 }
 
 .submit-btn,
-.reset-btn {
+.reset-btn,
+.button {
   padding: var(--spacing-small) var(--spacing-large);
   font-size: 1rem;
   font-weight: 600;
@@ -807,12 +748,20 @@ textarea.input-style {
   transition: background-color 0.3s, opacity 0.3s;
 }
 
-.submit-btn {
+/* 다이어그램 컨트롤 버튼 크기 조정 */
+.small-button {
+  padding: var(--spacing-tiny) var(--spacing-medium); /* 크기 축소 */
+  font-size: 0.85rem;
+}
+
+.submit-btn,
+.button {
   background-color: var(--color-primary);
   color: #ffffff;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.button:hover {
   background-color: #004d53;
 }
 
@@ -872,12 +821,17 @@ textarea.input-style {
   border: 3px solid var(--color-primary-dark);
 }
 
+.diagram-controls {
+  margin: var(--spacing-tiny);
+}
+
 .square {
   width: 100%;
   height: 100%;
   /* 밝은 칸과 어두운 칸의 색상 교차는 패턴으로 설정됨 */
   background-color: var(--board-color-dark);
   position: relative; /* ::after 요소를 위해 필요 */
+  color: dark;
 }
 
 /* 체스판 색상 패턴 설정 (밝은 칸) */

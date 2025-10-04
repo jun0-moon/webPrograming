@@ -1,65 +1,72 @@
 
-                        <div class="square black rook"></div>
-                        <div class="square black knight"></div>
-                        <div class="square black bishop"></div>
-                        <div class="square black queen"></div>
-                        <div class="square black king"></div>
-                        <div class="square black bishop"></div>
-                        <div class="square black knight"></div>
-                        <div class="square black rook"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square black pawn"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white pawn"></div>
-                        <div class="square white rook"></div>
-                        <div class="square white knight"></div>
-                        <div class="square white bishop"></div>
-                        <div class="square white queen"></div>
-                        <div class="square white king"></div>
-                        <div class="square white bishop"></div>
-                        <div class="square white knight"></div>
-                        <div class="square white rook"></div>
+                  <div class="square black rook" data-coord="a8"></div>
+                  <div class="square black knight" data-coord="b8"></div>
+                  <div class="square black bishop" data-coord="c8"></div>
+                  <div class="square black queen" data-coord="d8"></div>
+                  <div class="square black king" data-coord="e8"></div>
+                  <div class="square black bishop" data-coord="f8"></div>
+                  <div class="square black knight" data-coord="g8"></div>
+                  <div class="square black rook" data-coord="h8"></div>
+
+                  <div class="square black pawn" data-coord="a7"></div>
+                  <div class="square black pawn" data-coord="b7"></div>
+                  <div class="square black pawn" data-coord="c7"></div>
+                  <div class="square black pawn" data-coord="d7"></div>
+                  <div class="square black pawn" data-coord="e7"></div>
+                  <div class="square black pawn" data-coord="f7"></div>
+                  <div class="square black pawn" data-coord="g7"></div>
+                  <div class="square black pawn" data-coord="h7"></div>
+
+                  <div class="square" data-coord="a6"></div>
+                  <div class="square" data-coord="b6"></div>
+                  <div class="square" data-coord="c6"></div>
+                  <div class="square" data-coord="d6"></div>
+                  <div class="square" data-coord="e6"></div>
+                  <div class="square" data-coord="f6"></div>
+                  <div class="square" data-coord="g6"></div>
+                  <div class="square" data-coord="h6"></div>
+
+                  <div class="square" data-coord="a5"></div>
+                  <div class="square" data-coord="b5"></div>
+                  <div class="square" data-coord="c5"></div>
+                  <div class="square" data-coord="d5"></div>
+                  <div class="square" data-coord="e5"></div>
+                  <div class="square" data-coord="f5"></div>
+                  <div class="square" data-coord="g5"></div>
+                  <div class="square" data-coord="h5"></div>
+
+                  <div class="square" data-coord="a4"></div>
+                  <div class="square" data-coord="b4"></div>
+                  <div class="square" data-coord="c4"></div>
+                  <div class="square" data-coord="d4"></div>
+                  <div class="square" data-coord="e4"></div>
+                  <div class="square" data-coord="f4"></div>
+                  <div class="square" data-coord="g4"></div>
+                  <div class="square" data-coord="h4"></div>
+
+                  <div class="square" data-coord="a3"></div>
+                  <div class="square" data-coord="b3"></div>
+                  <div class="square" data-coord="c3"></div>
+                  <div class="square" data-coord="d3"></div>
+                  <div class="square" data-coord="e3"></div>
+                  <div class="square" data-coord="f3"></div>
+                  <div class="square" data-coord="g3"></div>
+                  <div class="square" data-coord="h3"></div>
+
+                  <div class="square white pawn" data-coord="a2"></div>
+                  <div class="square white pawn" data-coord="b2"></div>
+                  <div class="square white pawn" data-coord="c2"></div>
+                  <div class="square white pawn" data-coord="d2"></div>
+                  <div class="square white pawn" data-coord="e2"></div>
+                  <div class="square white pawn" data-coord="f2"></div>
+                  <div class="square white pawn" data-coord="g2"></div>
+                  <div class="square white pawn" data-coord="h2"></div>
+
+                  <div class="square white rook" data-coord="a1"></div>
+                  <div class="square white knight" data-coord="b1"></div>
+                  <div class="square white bishop" data-coord="c1"></div>
+                  <div class="square white queen" data-coord="d1"></div>
+                  <div class="square white king" data-coord="e1"></div>
+                  <div class="square white bishop" data-coord="f1"></div>
+                  <div class="square white knight" data-coord="g1"></div>
+                  <div class="square white rook" data-coord="h1"></div>
