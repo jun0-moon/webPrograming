@@ -2486,10 +2486,7 @@
             const pieceClasses = Array.from(fromSquare.classList)
               .filter(
                 (cls) =>
-                  !cls.includes("square") &&
-                  !cls.includes("move") &&
-                  !cls.includes("start") &&
-                  !cls.includes("moved-square")
+                  !cls.includes("square") && !cls.includes("moved-square")
               )
               .join(" ");
 
@@ -2501,6 +2498,18 @@
             console.log(
               `[${diagramId}] Moved ${move.piece} to ${move.to}. Step: ${currentStep}`
             );
+
+            // 캐슬링 확인
+            if (move.info.includes("O-O")) {
+              // 다음 수도 캐슬링이 맞는지 확인 (배열 경계 검사도 함께 수행)
+              if (
+                currentStep < OPERA_GAME_MOVES.length &&
+                OPERA_GAME_MOVES[currentStep].info.includes("O-O") &&
+                OPERA_GAME_MOVES[currentStep].piece.includes("rook")
+              ) {
+                movePiece(diagramId, 1); // 다음 수 (룩 이동)를 자동으로 실행
+              }
+            }
           } else {
             console.error(
               `[${diagramId}] Move failed at step ${
@@ -2531,10 +2540,7 @@
             const pieceClasses = Array.from(currentToSquare.classList)
               .filter(
                 (cls) =>
-                  !cls.includes("square") &&
-                  !cls.includes("move") &&
-                  !cls.includes("start") &&
-                  !cls.includes("moved-square")
+                  !cls.includes("square") && !cls.includes("moved-square")
               )
               .join(" ");
 
@@ -2569,6 +2575,18 @@
           if (highlightFromSquare && highlightToSquare) {
             highlightFromSquare.classList.add("moved-square");
             highlightToSquare.classList.add("moved-square");
+          }
+
+          // 역방향 캐슬링 확인
+          if (OPERA_GAME_MOVES[prevStep].info.includes("O-O") && prevStep > 0) {
+            const potentialKingMove = OPERA_GAME_MOVES[pre_prevStep]; // 그 전 단계의 움직임
+            // 이전 단계가 킹 이동이었다면, 두 수 모두 되돌립니다.
+            if (
+              potentialKingMove.piece.includes("king") &&
+              potentialKingMove.info.includes("O-O")
+            ) {
+              movePiece(diagramId, -1);
+            }
           }
         }
       }
