@@ -283,6 +283,31 @@ footer p {
   margin-top: 0;
 }
 
+/* 히어로 이미지 섹션 */
+.hero-image-placeholder {
+  width: 100%;
+  height: 300px;
+  background-image: url("https://placehold.co/1200x400/004d53/ffffff?text=Chess+Board+Hero+Image"); /* Placeholder 이미지 */
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-large);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text {
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  padding: var(--spacing-medium);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius);
+}
+
 /* CTA (Call to Action) 영역 스타일 */
 .cta-area {
   margin-top: var(--spacing-large);
@@ -300,6 +325,13 @@ footer p {
 
 .cta-area p {
   margin-bottom: var(--spacing-large);
+}
+
+/* 버튼 그룹은 Flexbox를 사용하여 중앙 정렬 및 간격 제어 */
+.cta-area .button-group {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-medium);
 }
 
 /* ****************************************************** */
