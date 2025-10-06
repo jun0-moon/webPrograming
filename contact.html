@@ -38,15 +38,18 @@
 
     <main>
       <div class="container">
+        <!-- 문의 페이지 섹션 (ID는 외부 링크를 위해 유지) -->
         <section id="contact">
+          <!-- 페이지 제목 및 설명 -->
           <h2 class="section-title">📬 문의 및 피드백</h2>
-          <p class="section-description">
+          <p class="section-description-sidebar">
             사이트 이용 중 궁금한 점이나 체스 관련 질문을 남겨주세요.
           </p>
 
           <div class="content-card">
+            <!-- 폼 시작: JavaScript로 제출 처리 (action="#" 유지) -->
             <form id="contact-form" action="#" method="POST">
-              <!-- 1. 이름 필드 (required, placeholder) -->
+              <!-- 1. 이름 필드 (필수, 최소 길이 2) -->
               <div class="form-group">
                 <label for="name">이름</label>
                 <input
@@ -60,7 +63,7 @@
                 />
               </div>
 
-              <!-- 2. 이메일 필드 (type, required, pattern, aria-describedby) -->
+              <!-- 2. 이메일 필드 (필수, 패턴 검사, 접근성 힌트) -->
               <div class="form-group">
                 <label for="email">이메일 주소</label>
                 <input
@@ -73,12 +76,13 @@
                   aria-describedby="email-hint"
                   class="input-style"
                 />
+                <!-- 접근성 힌트 텍스트 -->
                 <p id="email-hint" class="input-hint">
                   올바른 이메일 형식(예: user@example.com)을 입력해야 합니다.
                 </p>
               </div>
 
-              <!-- 3. 연락 목적 필드 (SELECT로 변경) -->
+              <!-- 3. 연락 목적 필드 (SELECT 드롭다운) -->
               <div class="form-group">
                 <label for="subject">연락 목적</label>
                 <select
@@ -97,7 +101,7 @@
                 </select>
               </div>
 
-              <!-- 4. 메시지 필드 (required, minlength) -->
+              <!-- 4. 메시지 필드 (텍스트 영역, 최소 길이 10) -->
               <div class="form-group">
                 <label for="message">메시지 내용</label>
                 <textarea
@@ -110,6 +114,7 @@
                 ></textarea>
               </div>
 
+              <!-- 폼 제출 후 메시지 영역 (초기에는 숨김) -->
               <div id="form-message" class="form-message-box hidden"></div>
 
               <!-- 5. 제출 및 리셋 버튼 -->
@@ -125,35 +130,45 @@
 
     <footer>
       <div class="container">
-        <p class="footer-text">
-          © 2025 체스의 세계 | 웹 프로그래밍 과제용 정적 사이트
+        <p>
+          &copy; 2025 체스 완전 정복 | 웹프로그래밍 과제 포트폴리오
+          <br />
+          Icons based on Chess Pieces by Cburnett (via Wikimedia Commons, CC
+          BY-SA 3.0).
         </p>
       </div>
     </footer>
 
     <script>
-      // 현재 페이지의 nav link 활성화 (contact.html)는 HTML에 active 클래스로 이미 지정됨
+      /**
+       * 폼 제출 및 초기화 시 동적으로 메시지를 표시하는 로직
+       */
 
-      // 폼 제출 시 알림 메시지 표시 (정적 사이트이므로 실제 데이터 전송은 없음)
+      // 폼 제출 이벤트 리스너 설정
       document
         .getElementById("contact-form")
         .addEventListener("submit", function (event) {
-          event.preventDefault(); // 실제 폼 전송 방지
+          event.preventDefault(); // 실제 폼 전송 방지 (정적 사이트)
 
           const messageBox = document.getElementById("form-message");
+
+          // 성공 메시지 내용 및 스타일 적용
           messageBox.innerHTML =
             "✅ 문의가 성공적으로 접수되었습니다. (정적 사이트이므로 실제 전송은 되지 않습니다.)";
           messageBox.classList.remove("hidden");
-          messageBox.classList.add("success"); // 성공 메시지 스타일 적용
+          messageBox.classList.add("success");
         });
 
-      // 폼 초기화 시 메시지 숨기기
+      // 폼 초기화 이벤트 리스너 설정
       document
         .getElementById("contact-form")
         .addEventListener("reset", function (event) {
           const messageBox = document.getElementById("form-message");
+
+          // 메시지 박스 숨기기 및 스타일 초기화
           messageBox.classList.add("hidden");
           messageBox.classList.remove("success");
+          messageBox.classList.remove("error"); // 혹시 모를 오류 스타일도 제거
           messageBox.innerHTML = "";
         });
     </script>

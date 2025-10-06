@@ -389,6 +389,7 @@ aside {
   padding: var(--spacing-medium) var(--spacing-large);
   transition: background-color 0.2s, border-left 0.2s;
   border-bottom: 1px solid var(--color-border);
+  display: flex;
 }
 
 .selection-item:last-child {
@@ -397,6 +398,13 @@ aside {
 
 .selection-item:hover {
   background-color: #f0f0f0;
+}
+
+.selection-item:has(.piece-icon):hover {
+  background-color: #f0f3f3;
+  border: 2px solid #d0d4d4;
+  transform: translateY(-2px); /* 살짝 위로 띄우기 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 미세한 그림자 추가 */
 }
 
 .selection-title {
@@ -408,6 +416,27 @@ aside {
 .selection-value {
   font-size: 0.85rem;
   color: var(--color-text-light);
+}
+
+/* 이미지 아이콘 스타일링 */
+.piece-icon {
+  /* 1. 이미지 클리핑을 위한 컨테이너 역할 */
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  flex-shrink: 0; /* 공간이 부족해도 줄어들지 않도록 고정 */
+
+  margin-top: var(--spacing-small);
+  margin-right: var(--spacing-medium);
+}
+
+.piece-icon img {
+  /* 2. 스프라이트 이미지를 <img> 태그 내에서 클리핑 */
+  width: 384px; /* 원본 스프라이트 너비 (6칸 * 64px) */
+  height: 64px; /* 원본 스프라이트 높이 (2줄 * 64px) */
+
+  /* 3. data-position 값에 따라 이미지 위치 이동 (JS/HTML에서 제어) */
+  object-fit: none;
 }
 
 /* 4.3 동적 활성화 스타일 */

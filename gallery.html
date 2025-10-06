@@ -38,6 +38,7 @@
 
     <main>
       <div class="container">
+        <!-- 페이지 제목 및 설명 (수직 중앙 정렬을 위해 인라인 Flex 적용) -->
         <div style="display: flex; align-items: center">
           <h2 class="section-title">체스 기물 소개</h2>
           <p class="section-description-sidebar">
@@ -46,39 +47,115 @@
         </div>
 
         <div class="gallery-layout">
-          <!-- A. 사이드바 (기물 선택 목록) -->
+          <!-- 사이드바 (기물 선택 목록) -->
           <aside id="piece-cards-container">
+            <!-- 사이드바 제목 -->
             <h3 class="section-title-sidebar">기물 목록</h3>
+
+            <!-- 선택 가능한 기물 목록 컨테이너 -->
             <div class="selection-list">
+              <!-- 킹 (King) 항목 -->
               <div class="selection-item" data-id="king-detail">
-                <div class="selection-title">킹 (King) ♔</div>
-                <div class="selection-value">가치: &infin;</div>
+                <!-- 이미지 아이콘 컨테이너 (클리핑 영역) -->
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png"
+                    alt="King Icon"
+                    data-position="-3 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">킹 (King)</div>
+                  <div class="selection-value">가치: &infin;</div>
+                </div>
               </div>
+
+              <!-- 퀸 (Queen) 항목 -->
               <div class="selection-item" data-id="queen-detail">
-                <div class="selection-title">퀸 (Queen) ♕</div>
-                <div class="selection-value">가치: 9점</div>
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png"
+                    alt="Queen Icon"
+                    data-position="-46 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">퀸 (Queen)</div>
+                  <div class="selection-value">가치: 9점</div>
+                </div>
               </div>
+
+              <!-- 룩 (Rook) 항목 -->
               <div class="selection-item" data-id="rook-detail">
-                <div class="selection-title">룩 (Rook) ♖</div>
-                <div class="selection-value">가치: 5점</div>
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png"
+                    alt="Rook Icon"
+                    data-position="-174 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">룩 (Rook)</div>
+                  <div class="selection-value">가치: 5점</div>
+                </div>
               </div>
+
+              <!-- 비숍 (Bishop) 항목 -->
               <div class="selection-item" data-id="bishop-detail">
-                <div class="selection-title">비숍 (Bishop) ♗</div>
-                <div class="selection-value">가치: 3점</div>
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png"
+                    alt="Bishop Icon"
+                    data-position="-88 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">비숍 (Bishop)</div>
+                  <div class="selection-value">가치: 3점</div>
+                </div>
               </div>
+
+              <!-- 나이트 (Knight) 항목 -->
               <div class="selection-item" data-id="knight-detail">
-                <div class="selection-title">나이트 (Knight) ♘</div>
-                <div class="selection-value">가치: 3점</div>
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png"
+                    alt="Knight Icon"
+                    data-position="-131 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">나이트 (Knight)</div>
+                  <div class="selection-value">가치: 3점</div>
+                </div>
               </div>
+
+              <!-- 폰 (Pawn) 항목 -->
               <div class="selection-item" data-id="pawn-detail">
-                <div class="selection-title">폰 (Pawn) ♙</div>
-                <div class="selection-value">가치: 1점</div>
+                <div class="piece-icon">
+                  <img
+                    src="./assets/img/256px-Chess_Pieces_Sprite.svg.png "
+                    alt="Pawn Icon"
+                    data-position="-216 -3"
+                  />
+                </div>
+
+                <div>
+                  <div class="selection-title">폰 (Pawn)</div>
+                  <div class="selection-value">가치: 1점</div>
+                </div>
               </div>
             </div>
           </aside>
 
-          <!-- B. 상세 정보 영역 -->
+          <!-- 상세 정보 영역 -->
           <div class="piece-detail-area">
+            <!-- 킹 상세 정보 카드 -->
             <div class="content-card piece-detail" id="king-detail">
               <h4>킹 (King) ♔</h4>
               <div class="piece-detail-container">
@@ -120,6 +197,7 @@
                   </ul>
                 </div>
 
+                <!-- 다이어그램 -->
                 <div class="chess-diagram-container">
                   <p class="diagram-title">움직임 다이어그램</p>
                   <div class="chess-diagram">
@@ -193,6 +271,7 @@
               </div>
             </div>
 
+            <!-- 퀸 상세 정보 카드 -->
             <div class="content-card piece-detail hidden" id="queen-detail">
               <h4>퀸 (Queen) ♕</h4>
               <div class="piece-detail-container">
@@ -307,6 +386,7 @@
               </div>
             </div>
 
+            <!-- 룩 상세 정보 카드 -->
             <div class="content-card piece-detail hidden" id="rook-detail">
               <h4>룩 (Rook) ♖</h4>
               <div class="piece-detail-container">
@@ -421,6 +501,7 @@
               </div>
             </div>
 
+            <!-- 비숍 상세 정보 카드 -->
             <div class="content-card piece-detail hidden" id="bishop-detail">
               <h4>비숍 (Bishop) ♗</h4>
               <div class="piece-detail-container">
@@ -535,6 +616,7 @@
               </div>
             </div>
 
+            <!-- 나이트 상세 정보 카드 -->
             <div class="content-card piece-detail hidden" id="knight-detail">
               <h4>나이트 (Knight) ♘</h4>
               <div class="piece-detail-container">
@@ -653,6 +735,7 @@
               </div>
             </div>
 
+            <!-- 폰 상세 정보 카드 -->
             <div class="content-card piece-detail hidden" id="pawn-detail">
               <h4>폰 (Pawn) ♙</h4>
               <div class="piece-detail-container">
@@ -777,26 +860,45 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2025 체스 완전 정복 | 웹프로그래밍 과제 포트폴리오</p>
+        <p>
+          &copy; 2025 체스 완전 정복 | 웹프로그래밍 과제 포트폴리오
+          <br />
+          Icons based on Chess Pieces by Cburnett (via Wikimedia Commons, CC
+          BY-SA 3.0).
+        </p>
       </div>
     </footer>
 
     <script>
-      // 갤러리 페이지의 동적 상호작용 로직
-      document.addEventListener("DOMContentLoaded", () => {
-        // 모든 선택 항목 (카드)과 모든 상세 정보를 가져옵니다.
-        const selectionItems = document.querySelectorAll(".selection-item");
-        const allDetails = document.querySelectorAll(".piece-detail");
+      /**
+       * 갤러리 페이지의 동적 상호작용 및 초기화 로직을 담당합니다.
+       */
 
-        // 페이지 로드 시 첫 번째 기물 (킹)을 활성화하는 초기화 로직
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- 1. 사이드바 아이콘 클리핑 설정 (정적 이미지 위치 조정) ---
+        const pieceIcons = document.querySelectorAll(".piece-icon img");
+
+        pieceIcons.forEach((img) => {
+          const position = img.getAttribute("data-position"); // '0 0', '-64 0' 등의 좌표 텍스트를 가져옴
+          if (position) {
+            // data-position 값을 읽어와 'px' 단위를 추가하여 CSS object-position에 적용
+            const [x, y] = position.split(" ");
+            img.style.objectPosition = `${x}px ${y}px`;
+          }
+        });
+
+        // --- 2. 동적 콘텐츠 전환 설정 ---
+        const selectionItems = document.querySelectorAll(".selection-item");
+        const allDetails = document.querySelectorAll(".piece-detail"); // 모든 상세 정보 카드 (숨겨져 있음)
+
+        // 초기화: 페이지 로드 시 첫 번째 기물 (킹)의 정보를 표시하고 활성화합니다.
         const firstCard = document.querySelector(".selection-item");
         if (firstCard) {
           const firstId = firstCard.getAttribute("data-id");
-          // 초기화 함수를 호출하여 킹의 정보를 즉시 표시합니다.
-          showPieceDetail(firstId, firstCard);
+          showPieceDetail(firstId, firstCard); // 킹 정보 표시 및 활성화
         }
 
-        // 각 선택 항목에 클릭 이벤트 리스너를 추가합니다.
+        // 클릭 이벤트 설정: 항목 클릭 시 콘텐츠 전환
         selectionItems.forEach((item) => {
           item.addEventListener("click", function () {
             const pieceId = this.getAttribute("data-id");
