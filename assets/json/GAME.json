@@ -1,0 +1,271 @@
+[
+  {
+    "piece": "white pawn",
+    "from": "d2",
+    "to": "d4",
+    "captured": "",
+    "info": "d4"
+  },
+  {
+    "piece": "black pawn",
+    "from": "e7",
+    "to": "e6",
+    "captured": "",
+    "info": "e6"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "g1",
+    "to": "f3",
+    "captured": "",
+    "info": "Nf3"
+  },
+  {
+    "piece": "black pawn",
+    "from": "f7",
+    "to": "f5",
+    "captured": "",
+    "info": "f5"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "b1",
+    "to": "c3",
+    "captured": "",
+    "info": "Nc3"
+  },
+  {
+    "piece": "black knight",
+    "from": "g8",
+    "to": "f6",
+    "captured": "",
+    "info": "Nf6"
+  },
+
+  {
+    "piece": "white bishop",
+    "from": "c1",
+    "to": "g5",
+    "captured": "",
+    "info": "Bg5"
+  },
+  {
+    "piece": "black bishop",
+    "from": "f8",
+    "to": "e7",
+    "captured": "",
+    "info": "Be7"
+  },
+
+  {
+    "piece": "white bishop",
+    "from": "g5",
+    "to": "f6",
+    "captured": "black knight",
+    "info": "Bxf6"
+  },
+  {
+    "piece": "black pawn",
+    "from": "e7",
+    "to": "f6",
+    "captured": "white bishop",
+    "info": "Bxf6"
+  },
+
+  {
+    "piece": "white pawn",
+    "from": "e2",
+    "to": "e4",
+    "captured": "",
+    "info": "e4"
+  },
+  {
+    "piece": "black pawn",
+    "from": "f5",
+    "to": "e4",
+    "captured": "white pawn",
+    "info": "fxe4"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "c3",
+    "to": "e4",
+    "captured": "black pawn",
+    "info": "Nxe4"
+  },
+  {
+    "piece": "black pawn",
+    "from": "b7",
+    "to": "b6",
+    "captured": "",
+    "info": "b6"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "f3",
+    "to": "e5",
+    "captured": "",
+    "info": "Ne5"
+  },
+  {
+    "piece": "black king",
+    "from": "e8",
+    "to": "g8",
+    "captured": "",
+    "info": "O-O(1/2)"
+  },
+  {
+    "piece": "black rook",
+    "from": "h8",
+    "to": "f8",
+    "captured": "",
+    "info": "O-O(2/2)"
+  },
+
+  {
+    "piece": "white bishop",
+    "from": "f1",
+    "to": "d3",
+    "captured": "",
+    "info": "Bd3"
+  },
+  {
+    "piece": "black bishop",
+    "from": "c8",
+    "to": "b7",
+    "captured": "",
+    "info": "Bb7"
+  },
+
+  {
+    "piece": "white queen",
+    "from": "d1",
+    "to": "h5",
+    "captured": "",
+    "info": "Qh5"
+  },
+  {
+    "piece": "black queen",
+    "from": "d8",
+    "to": "e7",
+    "captured": "",
+    "info": "Qe7"
+  },
+
+  {
+    "piece": "white queen",
+    "from": "h5",
+    "to": "h7",
+    "captured": "black pawn",
+    "info": "Qxh7+"
+  },
+  {
+    "piece": "black king",
+    "from": "g8",
+    "to": "h7",
+    "captured": "white queen",
+    "info": "Kxh7"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "e4",
+    "to": "f6",
+    "captured": "black bishop",
+    "info": "Nxf6+"
+  },
+  {
+    "piece": "black king",
+    "from": "h7",
+    "to": "h6",
+    "captured": "",
+    "info": "Kh6"
+  },
+
+  {
+    "piece": "white knight",
+    "from": "e5",
+    "to": "g4",
+    "captured": "",
+    "info": "Ng4+"
+  },
+  {
+    "piece": "black king",
+    "from": "h6",
+    "to": "g5",
+    "captured": "",
+    "info": "Kg5"
+  },
+
+  {
+    "piece": "white pawn",
+    "from": "h2",
+    "to": "h4",
+    "captured": "",
+    "info": "h4"
+  },
+  {
+    "piece": "black king",
+    "from": "g5",
+    "to": "f4",
+    "captured": "",
+    "info": "Kf4"
+  },
+
+  {
+    "piece": "white pawn",
+    "from": "g2",
+    "to": "g3",
+    "captured": "",
+    "info": "g3+"
+  },
+  {
+    "piece": "black king",
+    "from": "f4",
+    "to": "f3",
+    "captured": "",
+    "info": "Kf3"
+  },
+
+  {
+    "piece": "white bishop",
+    "from": "d3",
+    "to": "e2",
+    "captured": "",
+    "info": "Be2+"
+  },
+  {
+    "piece": "black king",
+    "from": "f3",
+    "to": "g2",
+    "captured": "",
+    "info": "Kg2"
+  },
+
+  {
+    "piece": "white rook",
+    "from": "h1",
+    "to": "h2",
+    "captured": "",
+    "info": "Rh2+"
+  },
+  {
+    "piece": "black king",
+    "from": "g2",
+    "to": "g1",
+    "captured": "",
+    "info": "Kg1"
+  },
+
+  {
+    "piece": "white king",
+    "from": "e1",
+    "to": "d2",
+    "captured": "",
+    "info": "Kd2#"
+  }
+]

@@ -4,38 +4,35 @@
 */
 
 /* ****************************************************** */
-/* 1. 글로벌 설정 & 공통 레이아웃 (GLOBAL & COMMON LAYOUT) */
+/* 1. 글로벌 & 공통 컴포넌트 (GLOBAL & SEMANTIC LAYOUT) */
 /* ****************************************************** */
+
+/* Inter 폰트 설정 */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 /* 1.1 CSS 변수 (Custom Properties) 및 폰트 설정 */
 :root {
   /* 체스 테마 색상 */
-  --color-primary: #006d77; /* 남색/청록색 계열 (메인 강조색) */
-  --color-primary-dark: #004d53; /* 남색/청록색 계열 (메인 강조색 - 다크) */
-  --color-secondary: #edd7a3; /* 베이지색 계열 (배경/카드 강조색) */
-  --color-background: #f7f9fb; /* 배경색 */
-  --color-background-secondary: #ffffff; /* 보조 배경색 (주로 카드 내부/aside) */
-  --color-text-dark: #1f2937; /* 진한 텍스트 */
-  --color-text-body: #525a65; /* 본문 텍스트 */
-  --color-text-light: #888; /* 밝은 텍스트 */
-  --color-accent-soft: #edf6f9; /* 옅은 배경 (활성화/호버 배경) */
-  --color-border: #e5e7eb; /* 경계선 */
+  --color-primary: #006d77;
+  --color-primary-dark: #004d53;
+  --color-secondary: #edd7a3;
+  --color-background: #f7f9fb;
+  --color-background-secondary: #ffffff;
+  --color-text-dark: #1f2937;
+  --color-text-body: #525a65;
+  --color-text-light: #888;
+  --color-accent-soft: #edf6f9;
+  --color-border: #e5e7eb;
 
   /* 체스판 다이어그램 색상 변수 */
-  --board-color-light: #f0d9b5; /* 밝은 칸 (베이지) */
-  --board-color-dark: #b58863; /* 어두운 칸 (갈색) */
-
-  --moved-color-light: #a7e0c8; /* 직전에 움직인 기물 위치 */
-  --moved-color-dark: #50b58e; /* 직전에 움직인 기물 위치 */
+  --board-color-light: #f0d9b5;
+  --board-color-dark: #b58863;
+  --moved-color-light: #a7e0c8;
+  --moved-color-dark: #50b58e;
 
   /* 체크 경고 색상 변수 */
-  --check-light-color: rgba(230, 57, 70, 0.5); /* 밝은 칸 (투명도 있는 빨강) */
-  --check-dark-color: rgba(
-    230,
-    57,
-    70,
-    0.7
-  ); /* 어두운 칸 (투명도를 높인 빨강) */
+  --check-light-color: rgba(230, 57, 70, 0.5);
+  --check-dark-color: rgba(230, 57, 70, 0.7);
 
   /* 체스 기물 svg */
   --chess-svg: url("../assets/img/256px-Chess_Pieces_Sprite.svg.png");
@@ -46,11 +43,8 @@
   --spacing-medium: 1rem;
   --spacing-large: 2rem;
   --border-radius: 0.5rem;
-  --header-height: 80px; /* 대략적인 헤더+네비게이션 높이 */
+  --header-height: 80px;
 }
-
-/* Inter 폰트 설정 */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 /* 1.2 HTML 요소 기본 스타일 및 리셋 */
 * {
@@ -86,13 +80,12 @@ pre {
   font-size: 0.9rem;
 }
 
-/* --- [추가됨: 동적 콘텐츠 제어를 위한 필수 클래스] --- */
+/* --- 동적 콘텐츠 제어를 위한 필수 클래스 --- */
 .hidden {
   display: none !important;
 }
-/* ------------------------------------------------ */
 
-/* 1.3 공통 컨테이너 및 섹션 스타일 */
+/* 1.3 공통 레이아웃 (Container, Main, Card) */
 .container {
   max-width: 1280px;
   width: 95%;
@@ -118,19 +111,22 @@ main {
 }
 
 /* 1.4 공통 타이포그래피 스타일 */
-.section-title,
-.section-sub-title {
+.section-title {
+  font-size: 2rem;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 2px solid var(--color-secondary);
+  display: inline-block;
   margin-bottom: var(--spacing-medium);
   color: var(--color-primary);
   font-weight: 700;
   text-align: center;
 }
 
-.section-title {
-  font-size: 2rem;
-  padding-bottom: var(--spacing-small);
-  border-bottom: 2px solid var(--color-secondary);
-  display: inline-block;
+.section-description {
+  text-align: center;
+  color: var(--color-text-body);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-large) auto;
 }
 
 .section-sub-title {
@@ -140,10 +136,67 @@ main {
   margin-top: var(--spacing-large);
   border-bottom: 1px solid var(--color-border);
   padding-bottom: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+  font-weight: 700;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--color-text-dark);
+  font-weight: 600;
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
+}
+
+.card-title:first-child {
+  margin-top: 0;
+}
+
+/* 1.5 공통 Flex 그룹 스타일 */
+.detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-medium);
+}
+
+/* 1.6 구조화된 상세 설명 스타일 (UX 개선) */
+.detail-container h5 {
+  /* 특징, 장점, 약점 부제 스타일 */
+  font-size: 1.15rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 2px solid var(--color-accent-soft);
+  padding-bottom: var(--spacing-tiny);
+}
+
+.detail-container h5:first-of-type {
+  margin-top: var(--spacing-medium);
+}
+
+/* 1.7 공통 목록 스타일 */
+.detail-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--spacing-large);
+}
+.detail-container ul li {
+  margin-bottom: var(--spacing-small);
+  color: var(--color-text-body);
+  padding-left: 0;
+}
+.detail-container ul li strong {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-right: var(--spacing-tiny);
+  padding-right: var(--spacing-tiny);
+  border-right: 2px solid var(--color-accent-soft);
 }
 
 /* ****************************************************** */
-/* 2. 시맨틱 컴포넌트 (HEADER, NAVIGATION, FOOTER) */
+/* 2. 시맨틱 구조 스타일 (HEADER, NAVIGATION, FOOTER) */
 /* ****************************************************** */
 
 /* 2.1 Header */
@@ -157,7 +210,8 @@ header {
 }
 
 .header-content {
-  text-align: center;
+  text-align: left;
+  display: flex;
 }
 
 .header-title {
@@ -171,7 +225,8 @@ header {
   font-size: 1rem;
   color: var(--color-primary);
   font-weight: 500;
-  margin-top: var(--spacing-small);
+  margin-top: var(--spacing-medium);
+  margin-left: var(--spacing-large);
 }
 
 /* 2.2 Navigation (Nav) */
@@ -267,78 +322,407 @@ footer p {
 }
 
 /* ****************************************************** */
-/* 3. 홈 페이지 (HOME PAGE - index.html) 스타일 */
+/* 3. 체스 다이어그램 및 기타 유틸리티 (DIAGRAMS & ETC) */
 /* ****************************************************** */
 
-/* 홈 페이지는 대부분 공통 스타일을 사용하며, 아래는 .content-card 내부의 소제목 스타일링입니다. */
-.card-title {
-  font-size: 1.25rem;
-  color: var(--color-text-dark);
+/* 3.1 다이어그램 공통 레이아웃 */
+.chess-diagram-container {
+  text-align: center;
+  padding: var(--spacing-medium) 0;
+}
+
+.diagram-title {
   font-weight: 600;
+  margin-bottom: var(--spacing-medium);
+  color: var(--color-primary-dark);
+}
+
+.chess-diagram {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 256px;
+  height: 256px;
+  margin: auto;
+  border: 3px solid var(--color-primary-dark);
+}
+
+.diagram-controls {
+  margin-top: var(--spacing-tiny);
+}
+
+.square {
+  width: 100%;
+  height: 100%;
+  background-color: var(--board-color-dark);
+  position: relative;
+  color: dark;
+}
+
+/* 체스판 색상 패턴 설정 (밝은 칸) */
+.square:nth-child(16n),
+.square:nth-child(16n-2),
+.square:nth-child(16n-4),
+.square:nth-child(16n-6),
+.square:nth-child(16n-9),
+.square:nth-child(16n-11),
+.square:nth-child(16n-13),
+.square:nth-child(16n-15) {
+  background-color: var(--board-color-light);
+}
+
+/* 3.2 기물 및 이동 표시 스타일 */
+
+/* 이동 가능 위치 (Dot) */
+.move::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+}
+
+/* 폰의 공격 위치 (Capture) - X 표시 */
+.capture::after {
+  content: "×";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f00;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 기물 위치 공통 스타일 (Sprite Sheet용) */
+.king::after,
+.queen::after,
+.rook::after,
+.bishop::after,
+.knight::after,
+.pawn::after {
+  content: ""; /* 텍스트 기호 생성 제거 */
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* 이미지 스타일 */
+  background-image: var(--chess-svg);
+  background-size: 192px 64px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 기물별 위치 설정 (background-position) */
+/* White Pieces (윗줄, Y축 0px) */
+.white.king::after {
+  background-position: 0 0;
+}
+.white.queen::after {
+  background-position: -32px 0;
+}
+.white.bishop::after {
+  background-position: -64px 0;
+}
+.white.knight::after {
+  background-position: -96px 0;
+}
+.white.rook::after {
+  background-position: -128px 0;
+}
+.white.pawn::after {
+  background-position: -160px 0;
+}
+
+/* Black Pieces (아랫줄, Y축 -32px) */
+.black.king::after {
+  background-position: 0 -32px;
+}
+.black.queen::after {
+  background-position: -32px -32px;
+}
+.black.bishop::after {
+  background-position: -64px -32px;
+}
+.black.knight::after {
+  background-position: -96px -32px;
+}
+.black.rook::after {
+  background-position: -128px -32px;
+}
+.black.pawn::after {
+  background-position: -160px -32px;
+}
+
+/* 체크 상태 강조 (King in Check) */
+.king-in-check {
+  position: relative;
+}
+
+/* 기물 이동 하이라이트 (Moved Square) */
+.moved-square {
+  background-color: var(--moved-color-dark) !important;
+}
+
+/* 밝은 칸에 위치할 때 */
+.square:nth-child(16n).moved-square,
+.square:nth-child(16n-2).moved-square,
+.square:nth-child(16n-4).moved-square,
+.square:nth-child(16n-6).moved-square,
+.square:nth-child(16n-9).moved-square,
+.square:nth-child(16n-11).moved-square,
+.square:nth-child(16n-13).moved-square,
+.square:nth-child(16n-15).moved-square {
+  background-color: var(--moved-color-light) !important;
+}
+
+/* 체크 상태 강조 오버레이 */
+.square:not(:nth-child(16n)):not(:nth-child(16n-2)):not(:nth-child(16n-4)):not(
+    :nth-child(16n-6)
+  ):not(:nth-child(16n-9)):not(:nth-child(16n-11)):not(:nth-child(16n-13)):not(
+    :nth-child(16n-15)
+  ).king-in-check::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--check-dark-color);
+}
+
+.square:nth-child(16n).king-in-check::before,
+.square:nth-child(16n-2).king-in-check::before,
+.square:nth-child(16n-4).king-in-check::before,
+.square:nth-child(16n-6).king-in-check::before,
+.square:nth-child(16n-9).king-in-check::before,
+.square:nth-child(16n-11).king-in-check::before,
+.square:nth-child(16n-13).king-in-check::before,
+.square:nth-child(16n-15).king-in-check::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--check-light-color);
+}
+
+/* ****************************************************** */
+/* 4. 홈 페이지 (HOME PAGE - index.html) 스타일 */
+/* ****************************************************** */
+
+/* 4.1 메인 레이아웃 및 히어로 섹션 */
+.home-main {
+  padding-top: 0; /* main 태그의 상단 패딩 제거 */
+}
+
+.home-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding: var(--spacing-large);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+    url("https://t4.ftcdn.net/jpg/04/90/83/57/240_F_490835708_OUxTZquvIYYQsthqkWGnJ7DksVYqPt8w.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(2.5px); /* 배경 블러 효과 */
+  transform: scale(1.1); /* 블러 경계선 제거 */
+  z-index: 1;
+}
+
+.hero-content-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-main-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: var(--spacing-small);
+}
+
+.hero-subtext {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin-bottom: var(--spacing-large);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hero-button {
+  padding: var(--spacing-medium) var(--spacing-large);
+  font-size: 1.1rem;
+  background-color: var(--color-secondary);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #fff;
+  transform: translateY(-3px);
+}
+
+/* 4.2 미디어 갤러리 섹션 */
+#media-gallery {
+  padding-top: var(--spacing-large);
+  padding-bottom: var(--spacing-large);
+}
+
+.media-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-large);
   margin-top: var(--spacing-large);
+}
+
+.poster-card {
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.poster-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3; /* 포스터 비율 유지 */
+  object-fit: cover;
+}
+
+.poster-content {
+  padding: var(--spacing-medium);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-tiny);
+}
+
+.poster-year {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
   margin-bottom: var(--spacing-medium);
 }
 
-.card-title:first-child {
-  margin-top: 0;
+.poster-description {
+  font-size: 0.95rem;
+  color: var(--color-text-body);
+  line-height: 1.5;
+  margin-top: auto; /* 설명을 카드 하단에 위치시키기 위해 */
 }
 
-/* 히어로 이미지 섹션 */
-.hero-image-placeholder {
-  width: 100%;
-  height: 300px;
-  background-image: url("https://placehold.co/1200x400/004d53/ffffff?text=Chess+Board+Hero+Image"); /* Placeholder 이미지 */
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-large);
+/* 4.3 체스의 이점 (아이콘 그리드) */
+#benefits-section {
+  padding-bottom: var(--spacing-large);
+}
 
+#benefits-section .content-card:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-large);
+  margin-top: var(--spacing-large);
+  text-align: center;
+}
+
+.benefit-item {
+  background-color: var(--color-accent-soft);
+  padding: var(--spacing-large);
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-medium);
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-text {
-  font-size: 2.5rem;
-  color: #ffffff;
-  font-weight: 900;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  padding: var(--spacing-medium);
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: var(--border-radius);
+.benefit-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
-/* CTA (Call to Action) 영역 스타일 */
-.cta-area {
-  margin-top: var(--spacing-large);
-  padding-top: var(--spacing-large);
-  border-top: 1px solid var(--color-border);
-  text-align: center;
+.benefit-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-small);
 }
 
-.cta-area h3 {
-  font-size: 1.5rem;
-  color: var(--color-primary);
-  margin-top: 0;
-  margin-bottom: var(--spacing-medium);
-}
-
-.cta-area p {
-  margin-bottom: var(--spacing-large);
-}
-
-/* 버튼 그룹은 Flexbox를 사용하여 중앙 정렬 및 간격 제어 */
-.cta-area .button-group {
+/* ****************************************************** */
+/* 5. 체스 기물 소개 페이지 (GALLERY PAGE - gallery.html) 스타일 */
+/* ****************************************************** */
+.page-title-header {
   display: flex;
-  justify-content: center;
-  gap: var(--spacing-medium);
+  align-items: center;
+  gap: 1rem; /* 제목과 설명 사이의 간격 추가 */
 }
 
-/* ****************************************************** */
-/* 4. 체스 기물 소개 페이지 (GALLERY PAGE - gallery.html) 스타일 */
-/* ****************************************************** */
-
-/* 4.1 2단 레이아웃 설정 */
+/* 5.1 2단 레이아웃 설정 */
 .gallery-layout {
   display: flex;
   gap: var(--spacing-large);
@@ -351,7 +735,7 @@ aside {
   flex-shrink: 0;
   padding: 0;
   position: sticky;
-  top: calc(80px + var(--spacing-medium)); /* 헤더/네비 아래에 고정 */
+  top: calc(80px + var(--spacing-medium));
   align-self: flex-start;
   height: fit-content;
   border: 1px solid var(--color-border);
@@ -377,7 +761,7 @@ aside {
   color: var(--color-text-light);
 }
 
-/* 4.2 선택 목록 스타일 */
+/* 5.2 선택 목록 스타일 */
 .selection-list {
   border-radius: 0 0 var(--spacing-small) var(--spacing-small);
   overflow: hidden;
@@ -402,7 +786,6 @@ aside {
 
 .selection-item:has(.piece-icon):hover {
   background-color: #f0f3f3;
-  border: 2px solid #d0d4d4;
   transform: translateY(-2px); /* 살짝 위로 띄우기 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 미세한 그림자 추가 */
 }
@@ -418,35 +801,32 @@ aside {
   color: var(--color-text-light);
 }
 
-/* 이미지 아이콘 스타일링 */
+/* 5.3 이미지 아이콘 스타일링 */
 .piece-icon {
-  /* 1. 이미지 클리핑을 위한 컨테이너 역할 */
   width: 36px;
   height: 36px;
   overflow: hidden;
-  flex-shrink: 0; /* 공간이 부족해도 줄어들지 않도록 고정 */
+  flex-shrink: 0;
 
   margin-top: var(--spacing-small);
   margin-right: var(--spacing-medium);
 }
 
 .piece-icon img {
-  /* 2. 스프라이트 이미지를 <img> 태그 내에서 클리핑 */
-  width: 384px; /* 원본 스프라이트 너비 (6칸 * 64px) */
-  height: 64px; /* 원본 스프라이트 높이 (2줄 * 64px) */
-
-  /* 3. data-position 값에 따라 이미지 위치 이동 (JS/HTML에서 제어) */
+  /* 스프라이트 이미지를 <img> 태그 내에서 클리핑 */
+  width: 256px; /* 원본 이미지의 실제 너비 */
+  height: auto; /* 원본 이미지의 비율 유지 */
   object-fit: none;
 }
 
-/* 4.3 동적 활성화 스타일 */
+/* 5.4 동적 활성화 스타일 */
 .piece-card-active {
   background-color: var(--color-accent-soft);
   border-left: 5px solid var(--color-primary);
   font-weight: 700;
 }
 
-/* 4.4 상세 정보 영역 */
+/* 5.5 상세 정보 영역 */
 .piece-detail-area {
   flex-grow: 1;
 }
@@ -464,62 +844,7 @@ aside {
   padding-bottom: var(--spacing-small);
 }
 
-/* 텍스트와 다이어그램을 가로로 배치 */
-.piece-detail-container {
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-medium);
-}
-
-/* 4.5 구조화된 상세 설명 스타일 (UX 개선) */
-.piece-detail-container h5 {
-  /* 특징, 장점, 약점 부제 스타일 */
-  font-size: 1.15rem;
-  color: var(--color-primary-dark);
-  font-weight: 700;
-  margin-top: var(--spacing-large);
-  margin-bottom: var(--spacing-medium);
-  border-bottom: 2px solid var(--color-accent-soft);
-  padding-bottom: var(--spacing-tiny);
-}
-
-.piece-detail-container h5:first-of-type {
-  margin-top: var(--spacing-medium); /* 다이어그램 바로 아래는 간격을 덜 줌 */
-}
-
-.piece-detail-container ul {
-  list-style: none; /* 리스트 기호를 제거하고, 아래 strong에 강조 스타일 적용 */
-  padding-left: 0;
-  margin-bottom: var(--spacing-large);
-}
-
-.piece-detail-container ul li {
-  margin-bottom: var(--spacing-small);
-  color: var(--color-text-body);
-  /* 리스트 기호 대신 텍스트로 구분하기 위해 들여쓰기를 제거 */
-  padding-left: 0;
-}
-
-/* <li> 내부의 <strong> 태그를 부부제목처럼 강조 */
-.piece-detail-container ul li strong {
-  display: inline-block;
-  color: var(--color-primary);
-  font-weight: 700;
-  margin-right: var(--spacing-tiny);
-  padding-right: var(--spacing-tiny);
-  border-right: 2px solid var(--color-accent-soft);
-}
-
-/* 상세 정보 숨김 */
-.piece-detail.hidden {
-  display: none;
-}
-
-/* ---------------------------------------------------- */
-/* 이동 가능 위치 (Move) - 점과 X 표시 로직 */
-/* ---------------------------------------------------- */
-
-/* 다이어그램을 텍스트 옆에 배치 (Flexbox로 전환) */
+/* 5.7 미디어 쿼리 */
 @media (min-width: 900px) {
   .piece-detail-container {
     display: flex;
@@ -532,20 +857,9 @@ aside {
     width: 256px;
     margin: 0 var(--spacing-medium) 0 auto;
     padding: 0;
-    /* 다이어그램이 텍스트 옆에 배치되도록 크기 고정 */
-  }
-  .piece-detail-container > ul {
-    /* 목록이 다이어그램 옆의 남은 공간을 차지하도록 */
-    flex-grow: 1;
-    margin-top: 0;
-  }
-  /* 다이어그램 옆의 텍스트가 바로 시작되도록 기존 long-text 스타일 정리 */
-  .piece-detail-container p.long-text {
-    margin-top: 0;
   }
 }
 
-/* 4.6 갤러리 미디어 쿼리 */
 @media (max-width: 900px) {
   .gallery-layout {
     flex-direction: column;
@@ -558,7 +872,7 @@ aside {
 }
 
 /* ****************************************************** */
-/* 5. 상세 규칙 & 전략 페이지 (ARTICLE PAGE - article.html) 스타일 */
+/* 6. 상세 규칙 & 전략 페이지 (ARTICLE PAGE - article.html) 스타일 */
 /* ****************************************************** */
 .article-layout {
   display: flex;
@@ -573,19 +887,12 @@ aside {
   }
 }
 
-/* 5.1 아티클 사이드바 (Aside) */
+/* 6.1 아티클 사이드바 (Aside) */
 #article-sidebar {
-  /* 사이드바 기본 배경색 변경 (흰색 대신 연한 배경) */
   background-color: var(--color-background);
-  border-radius: var(--border-radius);
   padding: var(--spacing-medium);
-  border: 1px solid var(--color-border);
-
-  /* PC 고정 사이드바 설정 */
-  width: 300px;
-  min-width: 300px;
-  position: sticky;
-  top: calc(var(--header-height) + 1.5rem); /* 헤더 아래에 고정 */
+  top: calc(var(--header-height) + 1.5rem);
+  margin-top: var(--spacing-medium);
 }
 
 /* 제목과 사이드바 간의 간격 조정 */
@@ -593,11 +900,11 @@ aside {
   padding-top: var(--spacing-small);
 }
 
-/* 5.2 사이드바 그룹 헤더 (규칙/전략) */
+/* 6.2 사이드바 그룹 헤더 (규칙/전략) */
 .sidebar-group-header {
   cursor: pointer;
   font-weight: 700;
-  padding: var(--spacing-small) var(--spacing-small); /* 상하, 좌우 간격 조정 */
+  padding: var(--spacing-small) var(--spacing-small);
   color: var(--color-primary-dark);
   transition: color 0.2s ease;
 }
@@ -605,20 +912,19 @@ aside {
   color: var(--color-primary);
 }
 
-/* 5.3 서브 메뉴 (규칙/전략 하위 목록) */
+/* 6.3 서브 메뉴 (규칙/전략 하위 목록) */
 .sub-selection-list {
   list-style: none;
-  overflow: hidden; /* 높이 애니메이션을 위해 overflow 숨김 */
+  overflow: hidden;
   transition: max-height 0.3s ease-out;
-  max-height: 0; /* 초기 상태 (숨김) */
+  max-height: 0;
 }
 /* [순수 CSS 호버 로직] 그룹에 마우스를 올리면 하위 목록 펼치기 */
 .sidebar-group:hover .sub-selection-list {
-  max-height: 500px; /* 호버 시 펼침 */
+  max-height: 500px;
 }
 
-/* (1) 활성화된 링크의 부모 ul을 찾기 위해 :has()와 같은 복잡한 CSS 대신, 
-       JavaScript가 initial-open 클래스를 추가하도록 유도합니다. */
+/* (1) 활성화된 링크의 부모 ul을 펼쳐 고정 */
 .sub-selection-list.initial-open {
   max-height: 500px;
 }
@@ -638,7 +944,7 @@ aside {
   border-left: 3px solid var(--color-primary);
 }
 
-/* 5.4 사이드바 링크 활성화 (클릭된 항목) */
+/* 6.4 사이드바 링크 활성화 (클릭된 항목) */
 .sub-selection-list a.sidebar-link-active {
   font-weight: 700;
   color: var(--color-primary);
@@ -646,13 +952,13 @@ aside {
   border-left: 3px solid var(--color-primary-dark);
 }
 
-/* 5.5 아티클 본문 영역 및 콘텐츠 요소 스타일링 */
+/* 6.5 아티클 본문 영역 및 콘텐츠 요소 스타일링 */
 
 .article-body-area {
   flex-grow: 1;
 }
 
-/* 5.6 다이어그램과 텍스트 그룹 (체크, 더블체크) */
+/* 6.6 다이어그램과 텍스트 그룹 (체크, 더블체크) */
 .article-detail-group {
   display: flex;
   flex-direction: column; /* 모바일 우선 */
@@ -662,7 +968,7 @@ aside {
 @media (min-width: 900px) {
   .article-detail-group {
     flex-direction: row;
-    align-items: flex-start; /* 상단 정렬 */
+    align-items: flex-start;
     gap: var(--spacing-large);
   }
   .article-diagram {
@@ -695,8 +1001,8 @@ aside {
   color: white;
 }
 .caption-top {
-  caption-side: top; /* 캡션을 표의 위에 위치 */
-  text-align: left; /* 캡션을 왼쪽 정렬 */
+  caption-side: top;
+  text-align: left;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text-dark);
@@ -746,7 +1052,7 @@ blockquote {
 }
 
 /* ****************************************************** */
-/* 6. 문의 페이지 (CONTACT PAGE - contact.html) 스타일 */
+/* 7. 문의 페이지 (CONTACT PAGE - contact.html) 스타일 */
 /* ****************************************************** */
 
 .form-group {
@@ -811,7 +1117,7 @@ textarea.input-style {
 
 /* 다이어그램 컨트롤 버튼 크기 조정 */
 .small-button {
-  padding: var(--spacing-tiny) var(--spacing-medium); /* 크기 축소 */
+  padding: var(--spacing-tiny) var(--spacing-medium);
   font-size: 0.85rem;
 }
 
@@ -854,210 +1160,4 @@ textarea.input-style {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
-}
-
-/* ****************************************************** */
-/* 7. 체스 다이어그램 및 기타 유틸리티 (ETC) */
-/* ****************************************************** */
-
-/* --- 체스 움직임 다이어그램 스타일링 (갤러리 및 아티클 공통) --- */
-.chess-diagram-container {
-  text-align: center;
-  padding: var(--spacing-medium) 0;
-}
-
-.diagram-title {
-  font-weight: 600;
-  margin-bottom: var(--spacing-medium);
-  color: var(--color-primary-dark);
-}
-
-.chess-diagram {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  width: 256px; /* 8칸 * 32px/칸 */
-  height: 256px;
-  margin: auto;
-  border: 3px solid var(--color-primary-dark);
-}
-
-.diagram-controls {
-  margin: var(--spacing-tiny);
-}
-
-.square {
-  width: 100%;
-  height: 100%;
-  /* 밝은 칸과 어두운 칸의 색상 교차는 패턴으로 설정됨 */
-  background-color: var(--board-color-dark);
-  position: relative; /* ::after 요소를 위해 필요 */
-  color: dark;
-}
-
-/* 체스판 색상 패턴 설정 (밝은 칸) */
-.square:nth-child(16n),
-.square:nth-child(16n-2),
-.square:nth-child(16n-4),
-.square:nth-child(16n-6),
-.square:nth-child(16n-9),
-.square:nth-child(16n-11),
-.square:nth-child(16n-13),
-.square:nth-child(16n-15) {
-  background-color: var(--board-color-light);
-}
-
-/* ---------------------------------------------------- */
-/* 이동 가능 위치 (Move) - 점과 X 표시 로직 */
-/* ---------------------------------------------------- */
-
-/* 1. 이동 가능 위치 (Dot) */
-.move::after {
-  content: "";
-  display: block;
-  width: 12px;
-  height: 12px;
-  background-color: var(--color-primary); /* 테마 색상으로 점 찍기 */
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.7;
-}
-
-/* 2. 폰의 공격 위치 (Capture) - X 표시 */
-.capture::after {
-  content: "×"; /* X 표시 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 24px;
-  font-weight: 700;
-  color: #f00; /* 공격을 나타내는 빨간색 */
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.king::after,
-.queen::after,
-.rook::after,
-.bishop::after,
-.knight::after,
-.pawn::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  background-image: var(--chess-svg);
-  background-size: 192px 64px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* 2. 기물별 위치 설정 (background-position) */
-/* White Pieces (윗줄, Y축 0px) */
-/* White Pieces (윗줄, Y축 0px) */
-.white.king::after {
-  background-position: 0 0;
-}
-.white.queen::after {
-  background-position: -32px 0;
-}
-.white.bishop::after {
-  background-position: -64px 0;
-}
-.white.knight::after {
-  background-position: -96px 0;
-}
-.white.rook::after {
-  background-position: -128px 0;
-}
-.white.pawn::after {
-  background-position: -160px 0;
-} /* 160px = 5 * 32px */
-
-/* Black Pieces (아랫줄, Y축 -64px -> -32px) */
-.black.king::after {
-  background-position: 0 -32px;
-}
-.black.queen::after {
-  background-position: -32px -32px;
-}
-.black.bishop::after {
-  background-position: -64px -32px;
-}
-.black.knight::after {
-  background-position: -96px -32px;
-}
-.black.rook::after {
-  background-position: -128px -32px;
-}
-.black.pawn::after {
-  background-position: -160px -32px;
-}
-
-/* 킹 체크 상태 강조 */
-.king-in-check {
-  position: relative;
-}
-
-/* 이동 경로 색상 */
-.moved-square {
-  /* 기본값: 어두운 칸에 적용될 색상을 기본으로 설정 */
-  background-color: var(--moved-color-dark) !important;
-}
-
-/* 밝은 칸에 위치할 때 */
-.square:nth-child(16n).moved-square,
-.square:nth-child(16n-2).moved-square,
-.square:nth-child(16n-4).moved-square,
-.square:nth-child(16n-6).moved-square,
-.square:nth-child(16n-9).moved-square,
-.square:nth-child(16n-11).moved-square,
-.square:nth-child(16n-13).moved-square,
-.square:nth-child(16n-15).moved-square {
-  background-color: var(--moved-color-light) !important;
-}
-
-/* 어두운 칸에 체크 오버레이 적용 */
-.square:not(:nth-child(16n)):not(:nth-child(16n-2)):not(:nth-child(16n-4)):not(
-    :nth-child(16n-6)
-  ):not(:nth-child(16n-9)):not(:nth-child(16n-11)):not(:nth-child(16n-13)):not(
-    :nth-child(16n-15)
-  ).king-in-check::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--check-dark-color); /* 어두운 칸용 경고색 */
-}
-
-/* 밝은 칸에 체크 오버레이 적용 */
-.square:nth-child(16n).king-in-check::before,
-.square:nth-child(16n-2).king-in-check::before,
-.square:nth-child(16n-4).king-in-check::before,
-.square:nth-child(16n-6).king-in-check::before,
-.square:nth-child(16n-9).king-in-check::before,
-.square:nth-child(16n-11).king-in-check::before,
-.square:nth-child(16n-13).king-in-check::before,
-.square:nth-child(16n-15).king-in-check::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--check-light-color); /* 밝은 칸용 경고색 */
 }
