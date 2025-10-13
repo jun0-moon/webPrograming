@@ -214,6 +214,10 @@ header {
   display: flex;
 }
 
+.header-content:hover {
+  text-decoration: none;
+}
+
 .header-title {
   font-size: 1.875rem;
   font-weight: 800;
@@ -315,6 +319,51 @@ footer {
   text-align: center;
   margin-top: var(--spacing-large);
   font-size: 0.9rem;
+}
+
+/* 인용 (Blockquote) */
+blockquote {
+  border-left: 5px solid var(--color-primary);
+  padding: var(--spacing-large);
+  margin: calc(var(--spacing-large) + 0.5rem) 0;
+  background-color: var(--color-accent-soft);
+  border-radius: var(--border-radius);
+  color: var(--color-text-dark);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.quote-body {
+  margin-bottom: var(--spacing-medium);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.quote-original {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.quote-translation {
+  display: block;
+  text-align: right;
+  color: var(--color-text-body);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: var(--spacing-small);
+  padding-right: var(--spacing-medium);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.blockquote-footer {
+  display: block;
+  margin-top: var(--spacing-medium);
+  padding-right: var(--spacing-medium);
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  text-align: right;
+  font-style: normal;
 }
 
 .footer-content {
@@ -660,6 +709,7 @@ footer {
 .poster-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
 .poster-image {

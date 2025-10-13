@@ -10,10 +10,10 @@
   <body>
     <header>
       <div class="container">
-        <div class="header-content">
+        <a href="index.html" class="header-content">
           <h1 class="header-title">♟️ 체스의 세계 (The World of Chess)</h1>
           <p class="header-subtitle">규칙, 역사, 전략을 한눈에</p>
-        </div>
+        </a>
       </div>
     </header>
 
@@ -620,13 +620,6 @@
                   </div>
                 </div>
               </div>
-
-              <!-- 명언 인용 -->
-              <h4 class="section-sub-title">체스 명언 인용</h4>
-              <blockquote>
-                "The most dangerous pieces are the ones you don't see."
-                <footer class="blockquote-footer">— The Chess Master</footer>
-              </blockquote>
             </section>
 
             <!-- 3. 캐슬링 -->
@@ -839,18 +832,6 @@
                     </li>
                   </ul>
                 </div>
-              </div>
-
-              <!-- 인용문 -->
-              <div>
-                <h4 class="section-sub-title">체스 명언 인용</h4>
-                <blockquote>
-                  "The beauty of a move lies not in its form but in the thought
-                  behind it."
-                  <footer class="blockquote-footer">
-                    — Aaron Nimzowitsch, 덴마크-러시아의 그랜드마스터
-                  </footer>
-                </blockquote>
               </div>
             </section>
 
@@ -1079,7 +1060,26 @@
                     <div class="square"></div>
                     <div class="square"></div>
                   </div>
+                  <pre>exf8=N#</pre>
                 </div>
+              </div>
+
+              <!-- 명언 인용 -->
+              <div>
+                <h4 class="section-sub-title">체스 명언 인용</h4>
+                <blockquote>
+                  <div class="quote-body">
+                    <span class="quote-original"
+                      >"The pawns are the soul of chess."</span
+                    >
+                    <span class="quote-translation"
+                      >"폰은 체스의 영혼이다."</span
+                    >
+                  </div>
+                  <footer class="blockquote-footer">
+                    — François-André Danican Philidor, 18세기 체스 이론가
+                  </footer>
+                </blockquote>
               </div>
             </section>
 
@@ -1606,7 +1606,7 @@
 
             <!-- 10. 희생 -->
             <section class="content-card hidden" id="sacrifice">
-              <h3 class="card-title">7. 전술: 희생 (Sacrifice)</h3>
+              <h3 class="card-title">10. 전술: 희생 (Sacrifice)</h3>
 
               <!-- 희생 -->
               <div class="article-detail-group">
@@ -2252,11 +2252,10 @@
               .join(" ");
 
             // 3. 기물 이동 실행
-            toSquare.className = `square ${pieceClasses} moved-square`; // 도착 칸에 기물 클래스 복사 및 하이라이트
-            fromSquare.className = "square moved-square"; // 출발 칸을 빈 칸 및 하이라이트
+            toSquare.className = `square ${pieceClasses}`; // 도착 칸에 기물 클래스 복사 및 하이라이트
             currentStep = nextStep;
 
-            // 캐슬링 연속 실행 로직 ( 킹 이동 후 룩 이동 자동화 )
+            // 4. 캐슬링 연속 실행 로직 ( 킹 이동 후 룩 이동 자동화 )
             if (move.info.includes("O-O")) {
               // 다음 수도 캐슬링이 맞는지 확인 (배열 경계 검사도 함께 수행)
               if (
@@ -2265,8 +2264,13 @@
                 MOVES[currentStep].piece.includes("rook")
               ) {
                 movePiece(diagramId, 1); // 룩 이동 자동 실행
+                clearMovedSquares(diagramElement); // 룩 이동 후 하이라이트 초기화
               }
             }
+
+            // 5. 이동한 칸 하이라이트
+            toSquare.className += " moved-square"; // 도착 칸 하이라이트
+            fromSquare.className = "square moved-square"; // 출발 칸을 빈 칸 및 하이라이트
           } else {
             console.error(
               `[${diagramId}] Move failed at step ${
@@ -2328,9 +2332,26 @@
             `.square[data-coord="${prevMove.from}"]`
           );
 
-          if (highlightFromSquare && highlightToSquare) {
+          if (
+            !prevMove.info.includes("O-O") &&
+            highlightFromSquare &&
+            highlightToSquare
+          ) {
             highlightFromSquare.classList.add("moved-square");
             highlightToSquare.classList.add("moved-square");
+          } else {
+            // 캐슬링인 경우, 캐슬링 이동 칸만 하이라이트
+            clearMovedSquares(diagramElement);
+            diagramElement
+              .querySelector(
+                `.square[data-coord="${MOVES[pre_prevStep - 1].to}"]`
+              )
+              ?.classList.add("moved-square");
+            diagramElement
+              .querySelector(
+                `.square[data-coord="${MOVES[pre_prevStep - 1].from}"]`
+              )
+              ?.classList.add("moved-square");
           }
 
           // 역방향 캐슬링 확인
